@@ -1,0 +1,12 @@
+
+
+.control {
+  display: inline-block;
+  width: 10%;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px solid #FFD7AC;
+  border-radius: 5px;
+  margin: 10px;
+}
+

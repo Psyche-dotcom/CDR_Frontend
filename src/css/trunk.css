@@ -1,0 +1,173 @@
+#chart-container {
+  height: 200px;
+  width: 60px;
+  font-family: "Quicksand";
+}
+
+#chart-container text * {
+  font-family: "Quicksand" !important;
+}
+
+.raphael-group-egKDdyiQ {
+  display: none;
+}
+
+g[aria-labelledby*="-title"] {
+  display: none;
+}
+
+.badge-state-border {
+  border-left: 5px solid #bfbdbd;
+}
+
+.badge-state-border.ringing {
+  border-left: 5px solid #28d094;
+}
+
+.badge-state-border.connected {
+  border-left: 5px solid #ff9149;
+}
+
+.badge-state-border.dialing {
+  border-left: 5px solid #ff6d80;
+}
+
+.trunk-container .column:nth-child(1) .trunk-card-design {
+  border-radius: 10px;
+  border-left: 5px solid #adf8d7;
+}
+
+.trunk-container .column:nth-child(2) .trunk-card-design {
+  border-radius: 10px;
+  border-left: 5px solid #f7adf8;
+}
+
+.trunk-container .column:nth-child(3) .trunk-card-design {
+  border-radius: 10px;
+  border-left: 5px solid #add4f8;
+}
+
+.trunk-container .column:nth-child(4) .trunk-card-design {
+  border-radius: 10px;
+  border-left: 5px solid #ffd390;
+}
+
+.trunk-status-badge .ft-phone-incoming {
+  color: #078c5c;
+}
+
+.trunk-status i {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.trunk-duration {
+  font-weight: bold;
+}
+
+.dataTable .ft-clock {
+  margin-right: 4px;
+  color: #1e9ff2;
+}
+
+#TrunkDataTable {
+  font-family: Quicksand;
+}
+
+#AllCallsCard .card-header {
+  border-radius: 20px;
+}
+
+#AllCallsCard .badge-inbound {
+  border-radius: 30px;
+  font-weight: bold;
+  padding: 7px;
+  background-color: #0cd0fc2e;
+  color: #6188de;
+}
+
+#AllCallsCard .badge-outbound {
+  border-radius: 30px;
+  font-weight: bold;
+  padding: 7px;
+  background-color: #ffbad654;
+  color: #ef639e;
+}
+
+div[id*="chartdiv"] {
+  width: 100%;
+  height: 280px;
+  font-family: Quicksand;
+}
+
+.trunk-chart-div {
+  position: absolute;
+  top: 30px;
+  right: -40px;
+  height: 250px;
+}
+
+.trunk-inbound-number h2 {
+  float: right;
+  display: block;
+  font-size: 24px;
+  color: #000 !important;
+  position: relative;
+  margin-left: 10px;
+  bottom: 4px;
+}
+
+.trunk-inbound-number {
+  float: right;
+  margin-top: 100px;
+  margin-right: 40px;
+}
+
+.trunk-inbound-number img {
+  width: 18px;
+}
+
+.trunk-inbound-number i {
+  vertical-align: sub !important;
+}
+
+.TrunkDetailButton {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  float: none !important;
+  z-index: 3;
+  padding: 0;
+}
+
+.TrunkDetailButton img {
+  width: 38px;
+}
+
+.trunknamebadge {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  position: relative;
+  margin-right: 2px;
+  border-radius: 100px;
+}
+
+.trunkstatue-date {
+  color: #3696db;
+  font-weight: bold;
+  display: inline-block;
+  float: left;
+  margin-right: 8px;
+}
+
+.trunkstatue-date img {
+  vertical-align: text-top;
+  margin-right: 3px;
+}
+
+.trunkstatue-time {
+  color: #28b77c;
+  font-weight: bold;
+  display: inline-block;
+}

@@ -1,0 +1,11 @@
+g[aria-labelledby*="-title"] {
+  display: none;
+}
+
+g text {
+  display: none;
+}
+
+.content-wrapper {
+  padding: 0 !important;
+}

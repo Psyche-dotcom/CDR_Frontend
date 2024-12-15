@@ -1,0 +1,222 @@
+﻿
+@media (max-width: 1200px) {
+    header .navbar-nav .nav-item .nav-link {
+        font-size: 14px;
+    }
+
+    .gp-main-slider .item img {
+        min-height: 475px;
+    }
+
+    .gp-main-slider .item .slider-content .title {
+        font-size: 28px;
+    }
+
+    .gp-main-slider .item .slider-content .desc {
+        font-size: 20px;
+    }
+
+    .gp-main-about .about-box-wrapper .box-item .head .title {
+        font-size: 14px;
+    }
+
+    .section-keep {
+        margin-top: 60px;
+        margin-bottom: 130px;
+    }
+
+    .section-keep .text-center img {
+        width: -webkit-fill-available;
+    }
+        .section-keep .top img, .section-keep .bottom img {
+            margin-right: 4px;
+        }
+}
+
+@media (max-width: 1024px) {
+    header .top-header .nav .nav-item .nav-link {
+        font-size: 12px;
+    }
+
+    header .navbar-brand img {
+        width: 150px;
+    }
+
+    header .navbar-nav .nav-item .nav-link {
+        padding-left: .3rem;
+        padding-right: .3rem;
+        font-size: 13px;
+    }
+
+    footer .footer-contact {
+        font-size: 14px;
+    }
+
+    .gp-main-slider .item img {
+        min-height: 475px;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+
+    .gp-main-slider .item .slider-content .title {
+        font-size: 28px;
+    }
+
+    .gp-main-slider .item .slider-content .desc {
+        font-size: 20px;
+    }
+
+    .gp-main-about .about-box-wrapper .box-item .head .title {
+        font-size: 12px;
+    }
+    .section-top {
+        padding: 140px 0;
+    }
+    .section-project img {
+        max-width: 600px;
+    }
+    .cdr-text::after {
+        left: 0.3em;
+    }
+    .section-project-right img {
+        max-width: 600px;
+    }
+    .section-speakourteam .custom-card {
+        height: auto;
+    }
+    .section-speakourteam h1 {
+        font-size: 34px;
+        line-height: 46px;
+    }
+    .section-speakourteam .col-md-6 {
+        padding: 54px 50px 60px 80px;
+    }
+}
+
+@media (max-width: 991px) {
+    header .top-header .nav.social {
+        display: none;
+    }
+
+    footer {
+        padding: 20px 0;
+    }
+
+    .gp-main-about .about-box-wrapper .box-item .head .title {
+        font-size: 16px;
+    }
+    .section-project img {
+        max-width: 550px;
+    }
+    .section-project-right img {
+        max-width: 550px;
+    }
+    .section-keep h1 {
+        margin-bottom: 65px;
+    }
+    .section-speakourteam .col-md-6 {
+        padding: 54px 40px 60px 80px;
+    }
+}
+
+@media (max-width: 767px) {
+    header .top-header .nav.links .nav-item .nav-link img {
+        height: 22px;
+    }
+
+    header .top-header .nav.langs .nav-item .nav-link {
+        height: 22px;
+        width: 22px;
+    }
+
+    .gp-page-header .page-header-content h1 {
+        font-size: 24px;
+    }
+
+    .gp-page-content {
+        padding: 50px 0;
+    }
+
+    .copyright {
+        text-align: center;
+    }
+
+        .copyright .copy {
+            margin-bottom: 10px;
+        }
+    .section-project img, .section-project-right img {
+        margin: 0 auto;
+        display: block;
+    }
+    .cdr-text::after {
+        left: 0.95em;
+    }
+    .section-project-right {
+        margin-top: 120px;
+        margin-bottom: 120px;
+    }
+    .section-security .text-right {
+        margin-top: 40px;
+    }
+    .section-keep h1 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .section-keep {
+        margin-top: 0;
+        
+    }
+}
+
+@media (max-width: 675px) {
+    header .top-header .nav.links .nav-item {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+        header .top-header .nav.links .nav-item .nav-link img {
+            margin-right: 0;
+        }
+
+        header .top-header .nav.links .nav-item .nav-link span {
+            display: none;
+        }
+    .cdr-text::after {
+        left: 0.72em;
+    }
+    .section-security h1 {
+        font-size: 36px;
+    }
+    .section-top-download h1 {
+        font-size: 64px;
+        line-height: 78px;
+    }
+    .section-test-download {
+        padding: 80px 0;
+    }
+    .section-keep p {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media (max-width: 575px) {
+    header .navbar-search .nav .nav-item .nav-link img {
+        width: 42px;
+    }
+    .section-top {
+        margin-bottom: 0px;
+    }
+    .cdr-text::after {
+        left: 0.45em;
+    }
+    footer .col-sm-4 {
+        display: inline-block;
+        width: auto;
+        margin: 0 auto;
+    }
+    .section-speakourteam .col-md-6 {
+        padding: 46px 0px 15px 74px;
+    }
+}
+/*# sourceMappingURL=layout.css.map */
