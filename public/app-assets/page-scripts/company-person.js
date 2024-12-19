@@ -44,7 +44,7 @@ var MostContactedChart;
 var MostContactedChartOptions;
 var BaseUrl = "https://cdr-cloud.onrender.com" + "/api/company/";
 var token = sessionStorage.getItem("accessToken");
-$(window).on("load", function () {
+$(function () {
   MostContactedChart = $("#combo-bar-line");
 
   MostContactedChartOptions = {
@@ -93,7 +93,7 @@ $(window).on("load", function () {
 });
 
 function GetTopData() {
-  SetCardOverlay($("#combo-bar-line").closest(".card"));
+  // SetCardOverlay($("#combo-bar-line").closest(".card"));
 
   const url = BaseUrl + "GetUsersStatistic";
 
@@ -145,7 +145,7 @@ function GetTopData() {
         var lineChart = new Chart(MostContactedChart, config);
       }
 
-      RemoveCardOverlay($("#combo-bar-line").closest(".card"));
+      // RemoveCardOverlay($("#combo-bar-line").closest(".card"));
     },
     error: function (xhr, status, error) {
       console.error("Request failed:", error);
@@ -316,8 +316,10 @@ function DrawPersonalInfo() {
 }
 
 function Connect() {
+  let userInfo = localStorage.getItem("UserData");
+
   connection = new signalR.HubConnectionBuilder()
-    .withUrl("https://" + $("#IpAddress").val() + ":8899/myMessageHub")
+    .withUrl("https://" + JSON.parse(userInfo).ipAddress + ":8899/myMessageHub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
