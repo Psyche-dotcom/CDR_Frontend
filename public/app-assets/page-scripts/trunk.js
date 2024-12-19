@@ -75,8 +75,10 @@ var SignalrConnection;
 var MessageProxy;
 
 function Connect() {
+  let userInfo = localStorage.getItem("UserData");
+
   const connection = new signalR.HubConnectionBuilder()
-    .withUrl("https://" + $("#IpAddress").val() + ":8899/myMessageHub")
+    .withUrl("https://" + JSON.parse(userInfo).ipAddress + ":8899/myMessageHub")
     .configureLogging(signalR.LogLevel.Information)
     .build();
 

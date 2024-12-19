@@ -9,6 +9,7 @@ import TotalInboundStatisticCard from "./total_inbound_statistics/indx";
 import TotalOutboundStatisticCard from "./total_outbound_statistics";
 import TotalExtExtStatisticCard from "./total_exe_statistics";
 import Script from "next/script";
+import MostContactedCard2 from "./most_contacted_card2";
 
 const ProfileMain = () => {
   return (

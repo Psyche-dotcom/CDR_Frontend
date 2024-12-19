@@ -50,6 +50,8 @@ const Customizer: React.FC<CustomizerProps> = ({
           >
             <button
               type="button"
+              data-item="1"
+              data-sidebar="menu-light"
               className={`btn btn-outline-info DashboardFilter ${
                 activeFilter === "DAILY" ? "active" : ""
               }`}
@@ -59,6 +61,8 @@ const Customizer: React.FC<CustomizerProps> = ({
             </button>
             <button
               type="button"
+              data-sidebar="menu-dark"
+              data-item="4"
               className={`btn btn-outline-info DashboardFilter ${
                 activeFilter === "WEEKLY" ? "active" : ""
               }`}
@@ -68,6 +72,8 @@ const Customizer: React.FC<CustomizerProps> = ({
             </button>
             <button
               type="button"
+              data-item="2"
+              data-sidebar="menu-dark"
               className={`btn btn-outline-info DashboardFilter ${
                 activeFilter === "MONTHLY" ? "active" : ""
               }`}
@@ -77,6 +83,8 @@ const Customizer: React.FC<CustomizerProps> = ({
             </button>
             <button
               type="button"
+              data-sidebar="menu-dark"
+              data-item="3"
               className={`btn btn-outline-info DashboardFilter ${
                 activeFilter === "YEARLY" ? "active" : ""
               }`}

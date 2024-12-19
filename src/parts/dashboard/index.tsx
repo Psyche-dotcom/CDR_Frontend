@@ -8,7 +8,7 @@ const DashboardMain = () => {
     <>
       <Script
         src="https://unpkg.com/typer-dot-js@0.1.0/typer.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
       <Script
         src="/app-assets/vendors/js/jquery.countTo.js"

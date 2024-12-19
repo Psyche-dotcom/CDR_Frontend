@@ -6,4 +6,6 @@ export const routes = {
   registerUser: () => "/api/user/register",
   loginUser: () => "/api/user/login",
   confirmUser: () => "/api/user/confirm_email",
+  dashboardGraphUrl: () => "/api/page/GetDashboardGraph",
+  mostContact: () => "/api/company/GetMostContacted",
 };

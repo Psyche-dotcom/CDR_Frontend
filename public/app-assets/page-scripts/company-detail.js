@@ -184,7 +184,7 @@ function GetTotalCalls(_f) {
 var CallSummaryChart;
 var chartOptions2;
 
-$(window).on("load", function () {
+$(function () {
   require.config({
     paths: {
       echarts: "../vendors/js/charts/echarts",
@@ -372,7 +372,7 @@ $("#CallSummaryFilter").on("change", function () {
 var MostContactedChart;
 var MostContactedChartOptions;
 
-$(window).on("load", function () {
+$(function () {
   require.config({
     paths: {
       echarts: "../vendors/js/charts/echarts",
@@ -385,7 +385,7 @@ $(window).on("load", function () {
     "echarts/chart/funnel",
   ], function (ec) {
     MostContactedChart = ec.init(document.getElementById("basic-pie"));
-
+    console.log("most contacted here ");
     MostContactedChartOptions = {
       title: {
         text: Localization.Top5List,
@@ -472,7 +472,7 @@ $(window).on("load", function () {
 });
 
 function GetMostContacted(f) {
-  SetCardOverlay($(".MostContactedFilter .dropdown-item").closest(".card"));
+  // SetCardOverlay($(".MostContactedFilter .dropdown-item").closest(".card"));
 
   const url = BaseUrl + "GetMostContacted";
 

@@ -8,6 +8,7 @@ import Navbar from "@/parts/dashboard_layout/navbar";
 import MainMenu from "@/parts/dashboard_layout/main_menu";
 import FooterDash from "@/parts/dashboard_layout/footer_dash";
 import Script from "next/script";
+import LayoutScript from "@/components/LayoutScript";
 
 export default function RootLayout({
   children,
@@ -82,60 +83,11 @@ export default function RootLayout({
         /> */}
         <link href="/app-assets/sweetalert/sweetalert.css" rel="stylesheet" />
 
-        <Script
-          src="/app-assets/vendors/js/vendors.min.js"
-          type="text/javascript"
-          strategy="lazyOnload"
-        />
-
-        <Script
-          src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-          strategy="lazyOnload"
-          type="text/javascript"
-        />
         <link
           href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
           rel="stylesheet"
           type="text/css"
         />
-
-        <Script
-          src="/app-assets/js/core/app-menu.js"
-          strategy="afterInteractive"
-        />
-
-        <Script
-          src="/app-assets/js/core/app.js"
-          type="text/javascript"
-          strategy="afterInteractive"
-        />
-
-        <Script
-          src="/app-assets/js/scripts/customizer.js"
-          type="text/javascript"
-          strategy="afterInteractive"
-        ></Script>
-
-        <Script
-          src="/app-assets/vendors/js/datetimepicker/jquery.datetimepicker.full.min.js"
-          strategy="lazyOnload"
-        />
-
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/kineticjs/5.2.0/kinetic.js"
-          strategy="lazyOnload"
-        />
-
-        <Script
-          src="/app-assets/enjoy-hint/enjoyhint.min.js"
-          strategy="lazyOnload"
-        ></Script>
-
-        <Script
-          src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"
-          strategy="lazyOnload"
-        />
-        {/* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></S> */}
       </head>
 
       <body
@@ -145,6 +97,7 @@ export default function RootLayout({
         data-open="hover"
       >
         <TanstackProvider>
+          <LayoutScript />
           {/* <LoadingDash /> */}
           <LoadingDashPost />
           <Navbar />
@@ -168,16 +121,6 @@ export default function RootLayout({
             <div className="sidebar-content"></div>
           </div>
         </TanstackProvider>
-
-        <Script
-          src="/app-assets/sweetalert/sweetalert.min.js"
-          strategy="lazyOnload"
-        ></Script>
-
-        <Script
-          src="/app-assets/page-scripts/layout.js"
-          strategy="lazyOnload"
-        ></Script>
       </body>
     </html>
   );

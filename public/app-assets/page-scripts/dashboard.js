@@ -10,43 +10,48 @@
   TotalMissed: "Total Missed",
 };
 $(function () {
+  // initializeDashboardChart("basic-area", false, Localization);
+  GetDashboardTotal();
   GetMostOutbound();
   GetMostAnswered();
   GetMostTalk();
   GetMostInbound();
-  GetDashboardTotal();
 });
 // const BaseUrl = process.env.NEXT_PUBLIC_API_URLS + "/api/page/";
 const BaseUrl = "https://cdr-cloud.onrender.com" + "/api/page/";
 
-console.log("baseurl");
 function GetDashboardTotal() {
+  console.log("hello here");
   // Set overlays on dashboard cards
-  SetCardOverlay($("#DashboardTotalCalls").closest(".card"));
-  SetCardOverlay($("#DashboardTotalInbound").closest(".card"));
-  SetCardOverlay($("#DashboardTotalOutbound").closest(".card"));
-  SetCardOverlay($("#DashboardTotalMissed").closest(".card"));
-  SetCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
-  SetCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
-
+  // SetCardOverlay($("#DashboardTotalCalls").closest(".card"));
+  // SetCardOverlay($("#DashboardTotalInbound").closest(".card"));
+  // SetCardOverlay($("#DashboardTotalOutbound").closest(".card"));
+  // SetCardOverlay($("#DashboardTotalMissed").closest(".card"));
+  // SetCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
+  // SetCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
+  console.log("hello here");
   $(".index-graphic-bar .numbersize").removeAttr("style");
 
   // Get the token from local storage
   const token = sessionStorage.getItem("accessToken");
-  const url = BaseUrl + "GetDashboardTotal";
-  console.log("Token", token);
+  currentdata = $(".DashboardFilter.active").attr("data-item");
+  // $('#nav-tab button[data-type="4"].active').attr("data-statue");
+
+  // ;
+  const url = BaseUrl + `GetDashboardTotal?_f=${currentdata}`;
+  console.log("url bash dash", url);
   // Make the API call with the Authorization header
   $.ajax({
     type: "POST",
     url: url,
-    data: { _f: $(".DashboardFilter.active").attr("data-item") },
+
     headers: {
       Authorization: `Bearer ${token}`,
     },
     success: function (data) {
       if (data != null) {
         var obj = jQuery.parseJSON(data);
-
+        console.log("obj internal", obj);
         // Update the dashboard totals with animations
         $("#DashboardTotalCalls").countTo({
           from: 0,
@@ -106,12 +111,12 @@ function GetDashboardTotal() {
       }
 
       // Remove overlays from dashboard cards
-      RemoveCardOverlay($("#DashboardTotalCalls").closest(".card"));
-      RemoveCardOverlay($("#DashboardTotalInbound").closest(".card"));
-      RemoveCardOverlay($("#DashboardTotalOutbound").closest(".card"));
-      RemoveCardOverlay($("#DashboardTotalMissed").closest(".card"));
-      RemoveCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
-      RemoveCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
+      // RemoveCardOverlay($("#DashboardTotalCalls").closest(".card"));
+      // RemoveCardOverlay($("#DashboardTotalInbound").closest(".card"));
+      // RemoveCardOverlay($("#DashboardTotalOutbound").closest(".card"));
+      // RemoveCardOverlay($("#DashboardTotalMissed").closest(".card"));
+      // RemoveCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
+      // RemoveCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
     },
   });
 }
@@ -162,71 +167,176 @@ $(".DashboardFilter").click(function () {
 
 var DashboardTotalChart;
 var chartOptions;
+function initializeDashboardChart(elementId, isDarkTheme, localization) {
+  // Initialize chart
+  const chart = echarts.init(document.getElementById(elementId));
 
-$(window).on("load", function () {
-  require.config({
-    paths: {
-      echarts: "../../../app-assets/vendors/js/charts/echarts",
+  // Chart configuration options
+  const chartOptions = {
+    grid: {
+      x: 40,
+      x2: 20,
+      y: 35,
+      y2: 25,
     },
-  });
 
-  require([
-    "echarts",
-    "echarts/chart/bar",
-    "echarts/chart/line",
-  ], function (ec) {
-    DashboardTotalChart = ec.init(document.getElementById("basic-area"));
+    tooltip: {
+      trigger: "axis",
+    },
 
-    chartOptions = {
-      grid: {
-        x: 40,
-        x2: 20,
-        y: 35,
-        y2: 25,
+    legend: {
+      data: [
+        localization.Inbound,
+        localization.Outbound,
+        localization.TotalCalls,
+      ],
+      textStyle: {
+        color: isDarkTheme ? "#fff" : "#000",
+        fontSize: 14,
       },
+    },
 
-      tooltip: {
-        trigger: "axis",
-      },
+    color: isDarkTheme
+      ? ["#35A3FF", "#AF60FF", "#626BB4"]
+      : ["#FF6BDD", "#6BF8C7", "#FFB051"],
 
-      legend: {
-        data: [
-          Localization.Inbound,
-          Localization.Outbound,
-          Localization.TotalCalls,
-        ],
-        textStyle: {
-          color: IsDarkTheme ? "#fff" : "#000",
-          fontSize: 14,
-        },
-      },
+    calculable: true,
+  };
 
-      color: IsDarkTheme
-        ? ["#35A3FF", "#AF60FF", "#626BB4"]
-        : ["#FF6BDD", "#6BF8C7", "#FFB051"],
+  // Set the chart options
+  chart.setOption(chartOptions);
 
-      calculable: true,
-    };
+  // Handle chart resizing
+  function resizeChart() {
+    setTimeout(() => {
+      chart.resize();
+    }, 200);
+  }
 
-    DashboardTotalChart.setOption(chartOptions);
+  // Bind resize events
+  $(window).on("resize", resizeChart);
+  $(".menu-toggle").on("click", resizeChart);
 
-    $(function () {
-      $(window).on("resize", resize);
-      $(".menu-toggle").on("click", resize);
-      function resize() {
-        setTimeout(function () {
-          DashboardTotalChart.resize();
-        }, 200);
-      }
-    });
+  // Trigger active dropdown item event if necessary
+  $(".DashboardGraph .dropdown-item.active").trigger("click");
 
-    $(".DashboardGraph .dropdown-item.active").trigger("click");
-  });
-});
+  return chart; // Return the initialized chart instance
+}
+
+// $(window).on("load", function () {
+//   require.config({
+//     paths: {
+//       echarts: "../../../app-assets/vendors/js/charts/echarts",
+//     },
+//   });
+
+//   require([
+//     "echarts",
+//     "echarts/chart/bar",
+//     "echarts/chart/line",
+//   ], function (ec) {
+//     DashboardTotalChart = ec.init(document.getElementById("basic-area"));
+
+//     chartOptions = {
+//       grid: {
+//         x: 40,
+//         x2: 20,
+//         y: 35,
+//         y2: 25,
+//       },
+
+//       tooltip: {
+//         trigger: "axis",
+//       },
+
+//       legend: {
+//         data: [
+//           Localization.Inbound,
+//           Localization.Outbound,
+//           Localization.TotalCalls,
+//         ],
+//         textStyle: {
+//           color: IsDarkTheme ? "#fff" : "#000",
+//           fontSize: 14,
+//         },
+//       },
+
+//       color: IsDarkTheme
+//         ? ["#35A3FF", "#AF60FF", "#626BB4"]
+//         : ["#FF6BDD", "#6BF8C7", "#FFB051"],
+
+//       calculable: true,
+//     };
+
+//     DashboardTotalChart.setOption(chartOptions);
+
+//     $(function () {
+//       $(window).on("resize", resize);
+//       $(".menu-toggle").on("click", resize);
+//       function resize() {
+//         setTimeout(function () {
+//           DashboardTotalChart.resize();
+//         }, 200);
+//       }
+//     });
+
+//     $(".DashboardGraph .dropdown-item.active").trigger("click");
+//   });
+// });
+// $(window).on("load", function () {
+//   // Initialize chart when the window loads
+//   var DashboardTotalChart = echarts.init(document.getElementById("basic-area"));
+
+//   var chartOptions = {
+//     grid: {
+//       x: 40,
+//       x2: 20,
+//       y: 35,
+//       y2: 25,
+//     },
+
+//     tooltip: {
+//       trigger: "axis",
+//     },
+
+//     legend: {
+//       data: [
+//         Localization.Inbound,
+//         Localization.Outbound,
+//         Localization.TotalCalls,
+//       ],
+//       textStyle: {
+//         color: IsDarkTheme ? "#fff" : "#000",
+//         fontSize: 14,
+//       },
+//     },
+
+//     color: IsDarkTheme
+//       ? ["#35A3FF", "#AF60FF", "#626BB4"]
+//       : ["#FF6BDD", "#6BF8C7", "#FFB051"],
+
+//     calculable: true,
+//   };
+
+//   DashboardTotalChart.setOption(chartOptions);
+
+//   // Resize chart on window resize or menu toggle
+//   function resize() {
+//     setTimeout(function () {
+//       DashboardTotalChart.resize();
+//     }, 200);
+//   }
+
+//   $(window).on("resize", resize);
+//   $(".menu-toggle").on("click", resize);
+
+//   // Trigger a dropdown-item event if needed
+//   $(".DashboardGraph .dropdown-item.active").trigger("click");
+// });
 
 $(".DashboardGraph .dropdown-item").click(function () {
   // Set overlay on the card containing the dropdown items
-  SetCardOverlay($(".DashboardGraph .dropdown-item").closest(".card"));
+  // SetCardOverlay($(".DashboardGraph .dropdown-item").closest(".card"));
 
   // Manage active class for dropdown items
   $(".DashboardGraph .dropdown-item").removeClass("active");
