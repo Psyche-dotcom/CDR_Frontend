@@ -3,7 +3,8 @@ import { getAccessToken } from "../utils";
 
 class HttpService {
   constructor() {
-    this.baseUrl = process.env.NEXT_PUBLIC_API_URLS;
+    this.baseUrl = "https://cdr-cloud.onrender.com";
+    //process.env.NEXT_PUBLIC_API_URLS;
   }
 
   postData = async (payload, url) => {
