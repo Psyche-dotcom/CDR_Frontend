@@ -45,7 +45,7 @@ const ProfileCrumb = () => {
               <button
                 type="button"
                 className="btn btn-outline-info StatisticFilter"
-                data-item="2"
+                data-item="4"
                 data-sidebar="menu-dark"
               >
                 {/* {t("weekly")} */}
@@ -54,7 +54,7 @@ const ProfileCrumb = () => {
               <button
                 type="button"
                 className="btn btn-outline-info StatisticFilter active"
-                data-item="3"
+                data-item="2"
                 data-sidebar="menu-dark"
               >
                 {/* {t("monthly")} */}
@@ -63,7 +63,7 @@ const ProfileCrumb = () => {
               <button
                 type="button"
                 className="btn btn-outline-info StatisticFilter"
-                data-item="4"
+                data-item="3"
                 data-sidebar="menu-dark"
               >
                 {/* {t("yearly")} */}

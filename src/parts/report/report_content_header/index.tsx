@@ -41,10 +41,10 @@ const ReportContentHeader = () => {
             <div className="breadcrumb-wrapper col-12">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item">
-                  <Link href="/dashboard">
+                  <a href="/dashboard">
                     Dashboard
                     {/* {"CDR_Dashboard"} */}
-                  </Link>
+                  </a>
                 </li>
                 <li className="breadcrumb-item active">
                   Company Reports

@@ -25,6 +25,7 @@
   RecordingNotFound: "Recording Not Found",
   RecordingDownload: "Recording Download",
   AudioRecordingsVoiceRecord: "Audio Recordings Voice Record",
+  WriteSomethingMessage: "Please give the favorite a name",
 };
 
 var BaseUrl = "https://cdr-cloud.onrender.com" + "/api/company/";
@@ -161,7 +162,6 @@ $("input[type=radio][name=target-creteria-radio]").change(function () {
     $("#TargetCriteriaInputDiv input").removeAttr("placeholder");
   }
 });
-
 $("#AddFavorite").click(function () {
   swal(
     {
@@ -174,7 +174,7 @@ $("#AddFavorite").click(function () {
     },
     function (inputValue) {
       if (inputValue === false) return false;
-      if (inputValue === "") {
+      if (inputValue.trim() === "") {
         swal.showInputError(Localization.WriteSomethingMessage);
         return false;
       }
@@ -182,7 +182,38 @@ $("#AddFavorite").click(function () {
       FavoriteFilter(inputValue);
     }
   );
+
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .sweet-alert.show-input input {
+      -webkit-text-security: none !important; /* Disable password masking */
+    }
+  `;
+  document.head.appendChild(style);
 });
+
+// $("#AddFavorite").click(function () {
+//   swal(
+//     {
+//       title: Localization.Favorite,
+//       text: Localization.FavoriBaslikMesaji,
+//       type: "input",
+//       showCancelButton: true,
+//       closeOnConfirm: false,
+//       inputPlaceholder: Localization.WriteSomething,
+//       input: "text",
+//     },
+//     function (inputValue) {
+//       if (inputValue === false) return false;
+//       if (inputValue.trim() === "") {
+//         swal.showInputError(Localization.WriteSomethingMessage);
+//         return false;
+//       }
+
+//       FavoriteFilter(inputValue);
+//     }
+//   );
+// });
 
 function FavoriteFilter(Title) {
   var _dates = $("input[name=date-radio]:checked").val();
@@ -218,7 +249,7 @@ function FavoriteFilter(Title) {
     _filterStatus == undefined &&
     _filterDuration == undefined
   ) {
-    // toastr.error(Localization.EnAz1SecimYap, Localization.Error);
+    toastr.error(Localization.EnAz1SecimYap, Localization.Error);
     swal.close();
     return false;
   }
@@ -257,11 +288,11 @@ function FavoriteFilter(Title) {
     success: function (obj) {
       var response = jQuery.parseJSON(obj);
       if (response.ResultStatus == 0) {
-        // toastr.success(response.Message, Localization.Success);
+        toastr.success(response.Message, Localization.Success);
         GetFavoriteFilterList();
         DeleteAllFilters();
       } else {
-        // toastr.error(response.Message, Localization.Error);
+        toastr.error(response.Message, Localization.Error);
       }
       swal.close();
     },
@@ -323,10 +354,10 @@ $(document).on("click", ".favorite-button-delete", function () {
           var response = jQuery.parseJSON(obj);
 
           if (response.ResultStatus == 0) {
-            // toastr.success(response.Message, Localization.Success);
+            toastr.success(response.Message, Localization.Success);
             GetFavoriteFilterList();
           } else {
-            // toastr.error(response.Message, Localization.Error);
+            toastr.error(response.Message, Localization.Error);
           }
           swal.close();
         },
@@ -366,7 +397,7 @@ $(document).on("click", ".favorite-button-view", function () {
   var _jsonSpan = $("#FavoriteFilterDataList-" + _id).html();
 
   if (_jsonSpan == "") {
-    // toastr.error(Localization.FavoriFiltrelemesiBulunamadi, Localization.Error);
+    toastr.error(Localization.FavoriFiltrelemesiBulunamadi, Localization.Error);
     return false;
   }
 
@@ -457,7 +488,7 @@ function GetFilters() {
     Status: _filterStatus,
     Duration: _filterDuration,
   };
-  console.log("Json", JSON.stringify(obj));
+
   return JSON.stringify(obj);
 }
 
@@ -502,14 +533,71 @@ $("#Filter").click(function () {
 
 $(".exportExcel").click(function () {
   var _json = GetFilters();
+  console.log(_json);
 
-  var sonuc = "/Panel/Company/ExportReportCalls";
-  var control = true;
+  // Replace with your dynamic Bearer token
+  var sonuc = BaseUrl + "ExportReportCalls?json=" + encodeURIComponent(_json);
 
   if (_json != null && _json.length > 0) {
-    sonuc += (control ? "?" : "&") + "json=" + _json;
-    control = false;
-  }
+    $.ajax({
+      url: sonuc,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      contentType: "application/json",
+      xhrFields: {
+        responseType: "blob", // Expect a binary file as a response
+      },
+      success: function (data, status, xhr) {
+        console.log("File downloaded successfully");
 
-  window.open(sonuc, "_blank");
+        // Create a blob from the response data
+        var blob = new Blob([data], {
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        });
+
+        // Extract the filename from the Content-Disposition header
+        var disposition = xhr.getResponseHeader("Content-Disposition");
+        var fileName;
+
+        if (disposition) {
+          // Match filename from either `filename*` or `filename` field
+          var utf8Match = /filename\*\s*=\s*UTF-8''([^;]+)/.exec(disposition);
+          var standardMatch = /filename\s*=\s*([^;]+)/.exec(disposition);
+
+          if (utf8Match) {
+            fileName = decodeURIComponent(utf8Match[1]);
+          } else if (standardMatch) {
+            fileName = standardMatch[1].replace(/['"]/g, ""); // Remove quotes
+          }
+        }
+
+        // Fallback filename if not provided
+        if (!fileName) {
+          var date = new Date();
+          var day = String(date.getDate()).padStart(2, "0");
+          var month = String(date.getMonth() + 1).padStart(2, "0");
+          var year = date.getFullYear();
+          var uniqueKey = Math.random().toString(36).substring(2, 12); // Generate a random 10-character key
+          fileName = `report-calls-${day}${month}${year}-${uniqueKey}.xlsx`;
+        }
+
+        // Create a download link and trigger the download
+        var downloadUrl = window.URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      },
+      error: function (xhr) {
+        console.error("Error exporting:", xhr.responseText);
+        toastr.error("An error occurred while exporting the report.");
+      },
+    });
+  } else {
+    toastr.error("Please provide filters to export.");
+  }
 });

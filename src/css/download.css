@@ -1,0 +1,18 @@
+.owl-dots {
+  counter-reset: dots;
+}
+
+.owl-dots span {
+  visibility: hidden;
+}
+
+.owl-dot:after {
+  counter-increment: dots;
+  content: counter(dots);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.owl-dot.active:after {
+  color: #e91e63;
+}

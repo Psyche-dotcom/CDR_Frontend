@@ -202,7 +202,7 @@ var Dt2 = $("#CompanyPersonTable").DataTable({
                   "</span>"
                 : json.users.$values[i].totalmissed,
             Button:
-              '<a class="CallDetailsButton" href="/Panel/Company/UserDetail/' +
+              '<a class="CallDetailsButton" href="/dashboard/user/' +
               json.users.$values[i].dn +
               '"> <img src="/app-assets/images/icons/eye-table.svg"></a>',
           };

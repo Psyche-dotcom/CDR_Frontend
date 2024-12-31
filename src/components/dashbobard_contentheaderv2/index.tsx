@@ -20,7 +20,7 @@ const DashboardContentHeaderV2: React.FC<DashboardContentHeaderProps> = ({
           <div className="breadcrumb-wrapper col-12">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link href={"/dashboard"}>{dashboardLabel}</Link>
+                <a href={"/dashboard"}>{dashboardLabel}</a>
               </li>
               <li className="breadcrumb-item active">{activeLabel}</li>
             </ol>

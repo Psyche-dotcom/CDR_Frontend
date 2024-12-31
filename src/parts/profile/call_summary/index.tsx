@@ -41,8 +41,8 @@ const CallSummaryCard: React.FC = () => {
                   <div className="form-group">
                     <label>{getLocalization("CDR_DisplayOptions")}</label>
                     <select className="form-control" id="CallSummaryFilter">
-                      <option value="0">{getLocalization("CDR_Hourly")}</option>
-                      <option value="1" selected>
+                      <option value="1">{getLocalization("CDR_Hourly")}</option>
+                      <option value="2" selected>
                         {getLocalization("CDR_Daily")}
                       </option>
                     </select>

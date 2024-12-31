@@ -7,8 +7,9 @@ export const ErrorHandler = (error, useMessage = false) => {
       message = defaultMessage;
     }
     if (error.response.status === 401) {
-      //log user out
-      // logOut();
+      sessionStorage.removeItem("accessToken");
+      localStorage.removeItem("accessToken");
+      window.location.href = "/login";
     } else {
       console.log("internal", error);
       message = error?.response?.data?.errors

@@ -9,8 +9,8 @@
   TotalAbandoned: "Total Abandoned",
   TotalMissed: "Total Missed",
 };
+let IsDarkTheme = false;
 $(function () {
-  // initializeDashboardChart("basic-area", false, Localization);
   GetDashboardTotal();
   GetMostOutbound();
   GetMostAnswered();
@@ -21,15 +21,14 @@ $(function () {
 const BaseUrl = "https://cdr-cloud.onrender.com" + "/api/page/";
 
 function GetDashboardTotal() {
-  console.log("hello here");
   // Set overlays on dashboard cards
-  // SetCardOverlay($("#DashboardTotalCalls").closest(".card"));
-  // SetCardOverlay($("#DashboardTotalInbound").closest(".card"));
-  // SetCardOverlay($("#DashboardTotalOutbound").closest(".card"));
-  // SetCardOverlay($("#DashboardTotalMissed").closest(".card"));
-  // SetCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
-  // SetCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
-  console.log("hello here");
+  SetCardOverlay($("#DashboardTotalCalls").closest(".card"));
+  SetCardOverlay($("#DashboardTotalInbound").closest(".card"));
+  SetCardOverlay($("#DashboardTotalOutbound").closest(".card"));
+  SetCardOverlay($("#DashboardTotalMissed").closest(".card"));
+  SetCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
+  SetCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
+
   $(".index-graphic-bar .numbersize").removeAttr("style");
 
   // Get the token from local storage
@@ -111,12 +110,12 @@ function GetDashboardTotal() {
       }
 
       // Remove overlays from dashboard cards
-      // RemoveCardOverlay($("#DashboardTotalCalls").closest(".card"));
-      // RemoveCardOverlay($("#DashboardTotalInbound").closest(".card"));
-      // RemoveCardOverlay($("#DashboardTotalOutbound").closest(".card"));
-      // RemoveCardOverlay($("#DashboardTotalMissed").closest(".card"));
-      // RemoveCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
-      // RemoveCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
+      RemoveCardOverlay($("#DashboardTotalCalls").closest(".card"));
+      RemoveCardOverlay($("#DashboardTotalInbound").closest(".card"));
+      RemoveCardOverlay($("#DashboardTotalOutbound").closest(".card"));
+      RemoveCardOverlay($("#DashboardTotalMissed").closest(".card"));
+      RemoveCardOverlay($("#DashboardTotalAbondaned").closest(".card"));
+      RemoveCardOverlay($("#DashboardTotalExt2Ext").closest(".card"));
     },
   });
 }
@@ -167,190 +166,80 @@ $(".DashboardFilter").click(function () {
 
 var DashboardTotalChart;
 var chartOptions;
-function initializeDashboardChart(elementId, isDarkTheme, localization) {
-  // Initialize chart
-  const chart = echarts.init(document.getElementById(elementId));
 
-  // Chart configuration options
-  const chartOptions = {
-    grid: {
-      x: 40,
-      x2: 20,
-      y: 35,
-      y2: 25,
+$(function () {
+  require.config({
+    paths: {
+      echarts: "../app-assets/vendors/js/charts/echarts",
     },
+  });
 
-    tooltip: {
-      trigger: "axis",
-    },
+  require([
+    "echarts",
+    "echarts/chart/bar",
+    "echarts/chart/line",
+  ], function (ec) {
+    DashboardTotalChart = ec.init(document.getElementById("basic-area"));
 
-    legend: {
-      data: [
-        localization.Inbound,
-        localization.Outbound,
-        localization.TotalCalls,
-      ],
-      textStyle: {
-        color: isDarkTheme ? "#fff" : "#000",
-        fontSize: 14,
+    chartOptions = {
+      grid: {
+        x: 40,
+        x2: 20,
+        y: 35,
+        y2: 25,
       },
-    },
 
-    color: isDarkTheme
-      ? ["#35A3FF", "#AF60FF", "#626BB4"]
-      : ["#FF6BDD", "#6BF8C7", "#FFB051"],
+      tooltip: {
+        trigger: "axis",
+      },
 
-    calculable: true,
-  };
+      legend: {
+        data: [
+          Localization.Inbound,
+          Localization.Outbound,
+          Localization.TotalCalls,
+        ],
+        textStyle: {
+          color: IsDarkTheme ? "#fff" : "#000",
+          fontSize: 14,
+        },
+      },
 
-  // Set the chart options
-  chart.setOption(chartOptions);
+      color: IsDarkTheme
+        ? ["#35A3FF", "#AF60FF", "#626BB4"]
+        : ["#FF6BDD", "#6BF8C7", "#FFB051"],
 
-  // Handle chart resizing
-  function resizeChart() {
-    setTimeout(() => {
-      chart.resize();
-    }, 200);
-  }
+      calculable: true,
+    };
 
-  // Bind resize events
-  $(window).on("resize", resizeChart);
-  $(".menu-toggle").on("click", resizeChart);
+    DashboardTotalChart.setOption(chartOptions);
 
-  // Trigger active dropdown item event if necessary
-  $(".DashboardGraph .dropdown-item.active").trigger("click");
+    $(function () {
+      $(window).on("resize", resize);
+      $(".menu-toggle").on("click", resize);
+      function resize() {
+        setTimeout(function () {
+          DashboardTotalChart.resize();
+        }, 200);
+      }
+    });
 
-  return chart; // Return the initialized chart instance
-}
-
-// $(window).on("load", function () {
-//   require.config({
-//     paths: {
-//       echarts: "../../../app-assets/vendors/js/charts/echarts",
-//     },
-//   });
-
-//   require([
-//     "echarts",
-//     "echarts/chart/bar",
-//     "echarts/chart/line",
-//   ], function (ec) {
-//     DashboardTotalChart = ec.init(document.getElementById("basic-area"));
-
-//     chartOptions = {
-//       grid: {
-//         x: 40,
-//         x2: 20,
-//         y: 35,
-//         y2: 25,
-//       },
-
-//       tooltip: {
-//         trigger: "axis",
-//       },
-
-//       legend: {
-//         data: [
-//           Localization.Inbound,
-//           Localization.Outbound,
-//           Localization.TotalCalls,
-//         ],
-//         textStyle: {
-//           color: IsDarkTheme ? "#fff" : "#000",
-//           fontSize: 14,
-//         },
-//       },
-
-//       color: IsDarkTheme
-//         ? ["#35A3FF", "#AF60FF", "#626BB4"]
-//         : ["#FF6BDD", "#6BF8C7", "#FFB051"],
-
-//       calculable: true,
-//     };
-
-//     DashboardTotalChart.setOption(chartOptions);
-
-//     $(function () {
-//       $(window).on("resize", resize);
-//       $(".menu-toggle").on("click", resize);
-//       function resize() {
-//         setTimeout(function () {
-//           DashboardTotalChart.resize();
-//         }, 200);
-//       }
-//     });
-
-//     $(".DashboardGraph .dropdown-item.active").trigger("click");
-//   });
-// });
-// $(window).on("load", function () {
-//   // Initialize chart when the window loads
-//   var DashboardTotalChart = echarts.init(document.getElementById("basic-area"));
-
-//   var chartOptions = {
-//     grid: {
-//       x: 40,
-//       x2: 20,
-//       y: 35,
-//       y2: 25,
-//     },
-
-//     tooltip: {
-//       trigger: "axis",
-//     },
-
-//     legend: {
-//       data: [
-//         Localization.Inbound,
-//         Localization.Outbound,
-//         Localization.TotalCalls,
-//       ],
-//       textStyle: {
-//         color: IsDarkTheme ? "#fff" : "#000",
-//         fontSize: 14,
-//       },
-//     },
-
-//     color: IsDarkTheme
-//       ? ["#35A3FF", "#AF60FF", "#626BB4"]
-//       : ["#FF6BDD", "#6BF8C7", "#FFB051"],
-
-//     calculable: true,
-//   };
-
-//   DashboardTotalChart.setOption(chartOptions);
-
-//   // Resize chart on window resize or menu toggle
-//   function resize() {
-//     setTimeout(function () {
-//       DashboardTotalChart.resize();
-//     }, 200);
-//   }
-
-//   $(window).on("resize", resize);
-//   $(".menu-toggle").on("click", resize);
-
-//   // Trigger a dropdown-item event if needed
-//   $(".DashboardGraph .dropdown-item.active").trigger("click");
-// });
+    $(".DashboardGraph .dropdown-item.active").trigger("click");
+  });
+});
 
 $(".DashboardGraph .dropdown-item").click(function () {
-  // Set overlay on the card containing the dropdown items
-  // SetCardOverlay($(".DashboardGraph .dropdown-item").closest(".card"));
+  SetCardOverlay($(".DashboardGraph .dropdown-item").closest(".card"));
 
-  // Manage active class for dropdown items
   $(".DashboardGraph .dropdown-item").removeClass("active");
   $(this).addClass("active");
 
-  // Get the filter value
   var _filter = $(this).attr("data-item");
 
-  // Get the token from local storage
   const token = sessionStorage.getItem("accessToken");
-  console.log("Key:::", token);
+
   const url = BaseUrl + "GetDashboardGraph";
 
-  // Make the API call with Authorization header
   $.ajax({
     type: "POST",
     url: url,

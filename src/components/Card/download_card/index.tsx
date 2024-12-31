@@ -1,5 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+import { routes } from "@/services/api_route";
+import HttpService from "@/services/httpServices";
+import { useState } from "react";
 
 interface DownloadCardProps {
   title: string;
@@ -22,97 +24,129 @@ const DownloadCard: React.FC<DownloadCardProps> = ({
   windows,
   linux,
 }) => {
+  const [downloadInProgress, setDownloadInProgress] = useState({
+    windows: false,
+    linux: false,
+  });
+
+  const handleDownload = async (
+    url: string,
+    fileName: string,
+    type: "windows" | "linux"
+  ) => {
+    if (downloadInProgress[type]) return;
+
+    setDownloadInProgress((prevState) => ({ ...prevState, [type]: true }));
+    try {
+      const httpService = new HttpService();
+      const data = await httpService.getData(url);
+
+      triggerDownload(data.data, fileName);
+    } catch (error) {
+      alert(
+        `Failed to download ${type === "windows" ? "Windows" : "Linux"} file.`
+      );
+      console.error(error);
+    } finally {
+      setDownloadInProgress((prevState) => ({ ...prevState, [type]: false }));
+    }
+  };
+
+  const triggerDownload = (data: Blob, fileName: string) => {
+    if (!data) {
+      alert("There was an error with the file download.");
+      return;
+    }
+
+    const blob = new Blob([data], { type: "application/octet-stream" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="card download-card">
       <div className="card-header">
         <h4 className="card-title">
-          <Image
-            src="/app-assets/images/download-page/hand.png"
-            alt="Hand icon"
-            width={24}
-            height={24}
-          />
+          <img src="/app-assets/images/download-page/hand.png" alt="hand" />
           {title}
         </h4>
       </div>
       <div className="card-content collapse show">
         <div className="card-body">
           <div className="row">
-            {/* Windows Download Section */}
+            {/* Windows Section */}
             <div className="col-md-6 win">
               <h1>{windows.title}</h1>
-              <Image
+              <img
                 className="download-icons"
                 src="/app-assets/images/download-windows.svg"
                 alt="Windows Icon"
-                width={32}
-                height={32}
               />
               <p>{windows.description}</p>
               <div className="card-footer">
-                <Link
-                  href="/Home/DownloadWindows"
-                  target="_blank"
+                <div
+                  className="DownloadButton"
                   data-item="DownloadWindows"
-                  passHref
+                  onClick={() =>
+                    handleDownload(
+                      routes.windowDownloadUrl(),
+                      "Cdrcloud.zip",
+                      "windows"
+                    )
+                  }
                 >
-                  <a className="DownloadButton">
-                    <p>{windows.downloadButtonText}</p>
-                    <Image
-                      src="/app-assets/images/download-page/win-button.png"
-                      alt="Download Windows"
-                      width={32}
-                      height={32}
-                    />
-                  </a>
-                </Link>
+                  <p>{windows.downloadButtonText}</p>
+                  <img
+                    src="/app-assets/images/download-page/win-button.png"
+                    alt="Windows Download"
+                  />
+                </div>
                 <a className="DocumentButton" data-item="DownloadWindows">
                   <p>{windows.documentButtonText}</p>
-                  <Image
+                  <img
                     src="/app-assets/images/download-page/document-button.png"
-                    alt="Windows Document"
-                    width={32}
-                    height={32}
+                    alt="Document Button"
                   />
                 </a>
               </div>
             </div>
 
-            {/* Linux Download Section */}
+            {/* Linux Section */}
             <div className="col-md-6">
               <h1>{linux.title}</h1>
-              <Image
+              <img
                 className="download-icons"
                 src="/app-assets/images/download-linux.svg"
                 alt="Linux Icon"
-                width={32}
-                height={32}
               />
               <p>{linux.description}</p>
               <div className="card-footer">
-                <Link
-                  href="/Home/DownloadDebian"
-                  target="_blank"
+                <div
+                  className="DownloadButton"
                   data-item="DownloadLinux"
-                  passHref
+                  onClick={() =>
+                    handleDownload(
+                      routes.debisnDownloadUrl(),
+                      "cdr-service-v18.deb",
+                      "linux"
+                    )
+                  }
                 >
-                  <a className="DownloadButton">
-                    <p>{linux.downloadButtonText}</p>
-                    <Image
-                      src="/app-assets/images/download-page/lin-button.png"
-                      alt="Download Linux"
-                      width={32}
-                      height={32}
-                    />
-                  </a>
-                </Link>
+                  <p>{linux.downloadButtonText}</p>
+                  <img
+                    src="/app-assets/images/download-page/lin-button.png"
+                    alt="Linux Download"
+                  />
+                </div>
                 <a className="DocumentButton" data-item="DownloadLinux">
                   <p>{linux.documentButtonText}</p>
-                  <Image
+                  <img
                     src="/app-assets/images/download-page/document-button.png"
-                    alt="Linux Document"
-                    width={32}
-                    height={32}
+                    alt="Document Button"
                   />
                 </a>
               </div>

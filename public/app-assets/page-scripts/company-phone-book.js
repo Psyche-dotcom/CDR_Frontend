@@ -136,7 +136,6 @@ $(function () {
 
     const forms = document.querySelector("#form-phonebook");
     const actionUrl = BaseUrl + "PhoneBookManagement/action";
-    //console.log("form", form);
 
     const formData = {};
     forms.querySelectorAll("input").forEach((input) => {
@@ -158,7 +157,7 @@ $(function () {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      //contentType: false,
+
       success: function (data) {
         const phonebookAjaxModel = jQuery.parseJSON(data);
         placeHolderDiv.html(
@@ -166,7 +165,7 @@ $(function () {
         );
 
         if (phonebookAjaxModel.ResultStatus == 0) {
-          //toastr.success(`${phonebookAjaxModel.Message}`, Localization.Success);
+          toastr.success(`${phonebookAjaxModel.Message}`, Localization.Success);
           Dt.ajax.reload();
           $(".page-loader-wrapper").hide();
         } else {
@@ -177,7 +176,7 @@ $(function () {
               summaryText += `*${text} <br>`;
             }
           );
-          //toastr.error(summaryText);
+          toastr.error(summaryText);
           setTimeout(function () {
             $("#create-user-modal").modal("show");
           }, 300);
@@ -187,7 +186,7 @@ $(function () {
       },
       error: function (err) {
         console.log(err);
-        //toastr.error(`${err.responseText}`, Localization.Error);
+        toastr.error(`${err.responseText}`, Localization.Error);
         $(".page-loader-wrapper").hide();
       },
     });
@@ -211,7 +210,7 @@ $(function () {
     }
 
     if (DtData.length > 1) {
-      //toastr.error(Localization.Adet1KisiSec, Localization.Error);
+      toastr.error(Localization.Adet1KisiSec, Localization.Error);
       return false;
     }
 
@@ -283,10 +282,10 @@ $(function () {
             const phonebookAjaxModel = jQuery.parseJSON(obj);
 
             if (phonebookAjaxModel.ResultStatus === 0) {
-              //toastr.success(phonebookAjaxModel.Message, Localization.Success);
+              toastr.success(phonebookAjaxModel.Message, Localization.Success);
               Dt.ajax.reload();
             } else {
-              // toastr.error(phonebookAjaxModel.Message, Localization.Error);
+              toastr.error(phonebookAjaxModel.Message, Localization.Error);
             }
             swal.close();
           },
@@ -318,13 +317,13 @@ $("#AddExcel").click(function () {
   var fileExtension = ["xls", "xlsx"];
   var filename = $("#file").val();
   if (filename.length == 0) {
-    // toastr.error(Localization.DosyaSeciniz, Localization.Error);
+    toastr.error(Localization.DosyaSeciniz, Localization.Error);
     $(".PostLoader").hide();
     return false;
   } else {
     var extension = filename.replace(/^.*\./, "");
     if ($.inArray(extension, fileExtension) == -1) {
-      // toastr.error(Localization.SadeceExcelDosyasiSec, Localization.Error);
+      toastr.error(Localization.SadeceExcelDosyasiSec, Localization.Error);
       $(".PostLoader").hide();
       return false;
     }
@@ -369,13 +368,13 @@ $("#AddExcel").click(function () {
       var data = jQuery.parseJSON(response);
       if (data.ResultStatus == 0) {
         $(".PostLoader").hide();
-        // toastr.success(data.Message, Localization.Success);
+        toastr.success(data.Message, Localization.Success);
         fdata = new FormData();
         Dt.ajax.reload();
         $("#file").val(null);
       } else {
         $(".PostLoader").hide();
-        // toastr.error(data.Message, Localization.Error);
+        toastr.error(data.Message, Localization.Error);
         fdata = new FormData();
         $("#ExportModal").modal("show");
       }
@@ -388,7 +387,7 @@ $("#AddExcel").click(function () {
       console.error("Response Text:", e.responseText);
 
       // Optionally display an error message
-      //toastr.error("An error occurred while processing the request.", "Error");
+      toastr.error("An error occurred while processing the request.", "Error");
     },
   });
 });
@@ -397,30 +396,108 @@ $("#Filter").click(function () {
   Dt.ajax.reload();
 });
 
+// $(".exportExcel").click(function () {
+//   var _ns = $("#NameSurname").val();
+//   var _e = $("#Email").val();
+//   var _p = $("#Phone").val();
+
+//   var sonuc = BaseUrl + "ExportCompanyPhonebook";
+//   var control = true;
+
+//   if (_ns != null && _ns.length > 0) {
+//     sonuc += (control ? "?" : "&") + "NameSurname=" + _ns;
+//     control = false;
+//   }
+
+//   if (_e != null && _e.length > 0) {
+//     sonuc += (control ? "?" : "&") + "Email=" + _e;
+//     control = false;
+//   }
+
+//   if (_p != null && _p.length > 0) {
+//     sonuc += (control ? "?" : "&") + "Phone=" + _p;
+//     control = false;
+//   }
+
+//   window.open(sonuc, "_blank");
+// });
+
 $(".exportExcel").click(function () {
   var _ns = $("#NameSurname").val();
   var _e = $("#Email").val();
   var _p = $("#Phone").val();
 
   var sonuc = BaseUrl + "ExportCompanyPhonebook";
-  var control = true;
+  var params = [];
 
   if (_ns != null && _ns.length > 0) {
-    sonuc += (control ? "?" : "&") + "NameSurname=" + _ns;
-    control = false;
+    params.push("NameSurname=" + encodeURIComponent(_ns));
   }
 
   if (_e != null && _e.length > 0) {
-    sonuc += (control ? "?" : "&") + "Email=" + _e;
-    control = false;
+    params.push("Email=" + encodeURIComponent(_e));
   }
 
   if (_p != null && _p.length > 0) {
-    sonuc += (control ? "?" : "&") + "Phone=" + _p;
-    control = false;
+    params.push("Phone=" + encodeURIComponent(_p));
   }
 
-  window.open(sonuc, "_blank");
+  if (params.length > 0) {
+    sonuc += "?" + params.join("&");
+  }
+
+  $.ajax({
+    url: sonuc,
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+    },
+    contentType: "application/json",
+    xhrFields: {
+      responseType: "blob",
+    },
+    success: function (data, status, xhr) {
+      console.log("File downloaded successfully");
+
+      var blob = new Blob([data], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+
+      var disposition = xhr.getResponseHeader("Content-Disposition");
+      var fileName;
+
+      if (disposition) {
+        var utf8Match = /filename\*\s*=\s*UTF-8''([^;]+)/.exec(disposition);
+        var standardMatch = /filename\s*=\s*([^;]+)/.exec(disposition);
+
+        if (utf8Match) {
+          fileName = decodeURIComponent(utf8Match[1]);
+        } else if (standardMatch) {
+          fileName = standardMatch[1].replace(/['"]/g, "");
+        }
+      }
+
+      if (!fileName) {
+        var date = new Date();
+        var day = String(date.getDate()).padStart(2, "0");
+        var month = String(date.getMonth() + 1).padStart(2, "0");
+        var year = date.getFullYear();
+        var uniqueKey = Math.random().toString(36).substring(2, 12);
+        fileName = `phone-book-${day}${month}${year}-${uniqueKey}.xlsx`;
+      }
+
+      var downloadUrl = window.URL.createObjectURL(blob);
+      var link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    },
+    error: function (xhr) {
+      toastr.error("Error exporting:", xhr.responseText);
+    },
+  });
 });
 
 $("#DataList tbody").on("click", "tr", function () {

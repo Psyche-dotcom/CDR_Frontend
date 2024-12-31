@@ -8,4 +8,7 @@ export const routes = {
   confirmUser: () => "/api/user/confirm_email",
   dashboardGraphUrl: () => "/api/page/GetDashboardGraph",
   mostContact: () => "/api/company/GetMostContacted",
+  extensionUrl: () => "/api/company/CompanyUserDetail/",
+  windowDownloadUrl: () => "/api/home/DownloadWindows/",
+  debisnDownloadUrl: () => "/api/home/DownloadDebian/",
 };

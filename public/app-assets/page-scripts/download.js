@@ -1,36 +1,50 @@
-﻿$(".DownloadButton").click(function () {
-    GetButtonDetail($(this));
+﻿var BaseUrl = "https://cdr-cloud.onrender.com" + "/api/page/";
+var token = sessionStorage.getItem("accessToken");
+$(".DownloadButton").click(function () {
+  GetButtonDetail($(this));
 });
 
 $(".DocumentButton").click(function () {
-    GetButtonDetail($(this));
+  GetButtonDetail($(this));
 });
 
 function GetButtonDetail(button) {
-    var link = button.attr("data-item");
+  var link = button.attr("data-item");
 
-    const url = "/Panel/Page/" + link;
+  const url = BaseUrl + link;
 
-    GetDownloadInfo(url);
+  GetDownloadInfo(url);
 }
 
 function GetDownloadInfo(url) {
-    $.get(url, function (obj) {
-        $("#DownloadSliderContent").html(obj);
+  $.ajax({
+    url: url,
+    type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    success: function (obj) {
+      $("#DownloadSliderContent").html(obj);
 
-        $("#OwlDownload").owlCarousel({
-            items: 1,
-            rewind: true,
-            dots: true,
-            nav: true,
-            lazyLoad: true
-        });
+      $("#OwlDownload").owlCarousel({
+        items: 1,
+        rewind: true,
+        dots: true,
+        nav: true,
+        lazyLoad: true,
+      });
 
-        $(".section-windows").show();
+      $(".section-windows").show();
 
-        $('html, body').animate({
-            scrollTop: $(".section-windows").offset().top
-        }, 1000);
-    });
+      $("html, body").animate(
+        {
+          scrollTop: $(".section-windows").offset().top,
+        },
+        1000
+      );
+    },
+    error: function (xhr, status, error) {
+      toastr.error("Error:", status, error);
+    },
+  });
 }
-

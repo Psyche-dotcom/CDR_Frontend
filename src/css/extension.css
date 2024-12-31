@@ -1,0 +1,7 @@
+.disabled-button {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.4;
+  filter: alpha(opacity=65);
+  border-radius: 1.25rem 1.25rem 0 0 !important;
+}

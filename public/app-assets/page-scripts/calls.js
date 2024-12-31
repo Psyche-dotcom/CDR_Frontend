@@ -22,13 +22,16 @@ $(document).on("click", ".CallDetailsButton", function () {
   );
   var _callId = $(this).attr("data-type");
 
-  const url = BaseUrl + `GetCallDetail?Id=${_callId}`;
+  const url =
+    "https://cdr-cloud.onrender.com" +
+    "/api/company/" +
+    `GetCallDetail?Id=${_callId}`;
 
   $.ajax({
     url: url,
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
     },
     success: function (obj) {
       $("#callDetail .sidebar-content").html(obj);

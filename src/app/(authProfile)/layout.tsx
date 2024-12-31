@@ -3,11 +3,11 @@ import { Inter } from "next/font/google";
 
 import TanstackProvider from "@/providers/TenstalkProvider";
 import Script from "next/script";
-
+// import "../../i18n";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CDR CLOUD",
+  title: "CDR CLOUD - Auth",
   description: "CDR DESC",
 };
 

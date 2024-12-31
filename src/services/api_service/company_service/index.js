@@ -70,3 +70,25 @@ export const useGetUserInfo = ({ enabled = true }) => {
     getUserInfoRequest: setFilter,
   };
 };
+
+export const useGetUserExtension = ({ enabled = true, subpart = "" }) => {
+  const { isFetched, isLoading, error, data, refetch, isFetching, setFilter } =
+    useFetchItem({
+      queryKey: ["GetUserExtension", subpart],
+      queryFn: () => {
+        return httpService.getData(routes.extensionUrl() + subpart);
+      },
+      enabled,
+      retry: 2,
+    });
+
+  return {
+    getUserExtensionIsFetching: isFetching,
+    getUserExtensionIsFetched: isFetched,
+    getUserExtensionIsLoading: isLoading,
+    getUserExtensionDataError: ErrorHandler(error),
+    getUserExtensionData: data?.data || [],
+    refreshGetUserExtensionData: refetch,
+    getUserExtensionRequest: setFilter,
+  };
+};

@@ -1,13 +1,14 @@
 "use client";
 import { useGetTrunkUserInfo } from "@/services/api_service/company_service";
 import { getLocalization, getProfilePicture, user } from "@/utils";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import React, { useEffect, useState } from "react";
 
 const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userinfo, setuserinfo] = useState({});
-
+  const { push } = useRouter();
   const {
     getTrunkUserInfoIsFetching,
     getTrunkUserInfoIsFetched,
@@ -34,9 +35,12 @@ const UserDropdown = () => {
       setuserinfo(getTrunkUserInfoData.result);
     }
   }, [getTrunkUserInfoIsLoading, getTrunkUserInfoData]);
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken");
+    localStorage.removeItem("accessToken");
+    push("/login");
   };
+
   //@ts-ignore
   const userFirstLetter = userinfo?.firstName?.substring(0, 1).toLowerCase();
   const profilePicture = getProfilePicture(userFirstLetter);
@@ -65,16 +69,16 @@ const UserDropdown = () => {
       </a>
 
       <div className="dropdown-menu dropdown-menu-right">
-        <Link className="dropdown-item" href="/dashboard/user_profile">
+        <a className="dropdown-item" href="/dashboard/user_profile">
           <i className="ft-user"></i> {getLocalization("Layout_Profil")}
-        </Link>
-        <Link className="dropdown-item" href="/dashboard/membership">
+        </a>
+        <a className="dropdown-item" href="/dashboard/membership">
           <i className="ft-credit-card"></i> {getLocalization("CDR_Membership")}
-        </Link>
+        </a>
         <div className="dropdown-divider"></div>
-        <Link className="dropdown-item" href="/user/logout">
+        <a className="dropdown-item" onClick={handleLogout}>
           <i className="ft-power"></i> {getLocalization("Layout_CikisYap")}
-        </Link>
+        </a>
       </div>
     </li>
   );

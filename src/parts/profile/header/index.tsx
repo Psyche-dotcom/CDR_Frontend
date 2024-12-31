@@ -24,9 +24,7 @@ const ContentHeader: React.FC = () => {
           <div className="breadcrumb-wrapper col-12">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link href="/dashboard">
-                  {getLocalization("CDR_Dashboard")}
-                </Link>
+                <a href="/dashboard">{getLocalization("CDR_Dashboard")}</a>
               </li>
               <li className="breadcrumb-item active">
                 {getLocalization("CDR_CompanyProfile")}

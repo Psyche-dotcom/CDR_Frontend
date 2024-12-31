@@ -47,9 +47,7 @@ export default function RootLayout({
         ></link>
         <link rel="stylesheet" href="/app-assets/css/vendors.css" />
         <link rel="stylesheet" href="/app-assets/css/app.css" />
-        {theme === true && (
-          <link rel="stylesheet" href="/app-assets/dark-color.css" />
-        )}
+
         <link
           rel="stylesheet"
           type="text/css"
@@ -88,6 +86,9 @@ export default function RootLayout({
           rel="stylesheet"
           type="text/css"
         />
+        {theme === true && (
+          <link rel="stylesheet" href="/app-assets/dark-color.css" />
+        )}
       </head>
 
       <body

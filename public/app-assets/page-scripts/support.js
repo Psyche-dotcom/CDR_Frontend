@@ -4,6 +4,8 @@
   Cancelled: "Cancelled",
   NotSolved: "Not Solved",
   Solved: "Solved",
+  Send: "Send",
+  Mesajiniz: "Message",
 };
 
 var BaseUrl = "https://cdr-cloud.onrender.com" + "/api/support/";
@@ -96,10 +98,10 @@ $(function () {
           placeHolderDiv.find('[name="IsValid"]').val() === "True";
 
         if (isValid) {
-          //   toastr.success(
-          //     `${addSupportAjaxModel.Message}`,
-          //     Localization.Success
-          //   );
+          toastr.success(
+            `${addSupportAjaxModel.Message}`,
+            Localization.Success
+          );
           $("#CreateSupportModal").modal("hide");
           GetSupports();
         } else {
@@ -110,13 +112,13 @@ $(function () {
               summaryText += `*${text}\n`;
             }
           );
-          //   toastr.error(summaryText);
+          toastr.error(summaryText);
         }
 
         $(".page-loader-wrapper").hide();
       },
       error: function (err) {
-        // toastr.error(`${err.responseText}`, Localization.Error);
+        toastr.error(`${err.responseText}`, Localization.Error);
         $(".page-loader-wrapper").hide();
       },
     });
@@ -167,9 +169,7 @@ function GetSupportDetail(Support) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    // data: {
-    //   PublicId: Support,
-    // },
+
     success: function (data) {
       var obj = jQuery.parseJSON(data);
       if (obj.ResultStatus == 0) {
@@ -298,18 +298,18 @@ $(document).on("click", ".support-send-message", function () {
       obj = jQuery.parseJSON(obj);
 
       if (obj.ResultStatus == 0) {
-        // toastr.success(obj.Message, Localization.Success);
+        toastr.success(obj.Message, Localization.Success);
         $("#support-message-textarea").val("");
         GetSupportMessages(_support);
       } else {
-        // toastr.error(obj.Message, Localization.Error);
+        toastr.error(obj.Message, Localization.Error);
       }
 
       $(".page-loader-wrapper").hide();
     },
     error: function (xhr, status, error) {
       console.error("Request failed:", error);
-      //   toastr.error("An error occurred. Please try again.", Localization.Error);
+      toastr.error("An error occurred. Please try again.", Localization.Error);
       $(".page-loader-wrapper").hide();
     },
   });
