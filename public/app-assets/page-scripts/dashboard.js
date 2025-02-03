@@ -249,6 +249,7 @@ $(".DashboardGraph .dropdown-item").click(function () {
     },
     success: function (obj) {
       if (obj != null) {
+        console.log("chart", obj);
         var _xAxis = obj.xAxis.$values;
         var inbound = obj.inboundList.$values;
         var outbound = obj.outboundList.$values;
@@ -859,8 +860,8 @@ function DrawTotalAbondaned(labelList, dataList) {
         backgroundColor: ChartTotalAbondanedGradient,
         borderColor: "#FE4D51",
         borderWidth: 2,
-        strokeColor: "#ffad87",
         pointRadius: 3,
+        strokeColor: "#ffad87",
       },
     ],
   };
@@ -922,6 +923,7 @@ function GetDashboardTotalGraph() {
     },
     success: function (obj) {
       if (obj != null) {
+        console.log("obj", obj);
         // Draw graphs using data from the response
         DrawTotalCalls(obj.dates.$values, obj.calls.$values);
         $(".DashboardTotalCalls-Percent").html(obj.callspercent);
