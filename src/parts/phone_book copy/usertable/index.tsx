@@ -4,6 +4,10 @@ import DataTable, { TableColumn } from "react-data-table-component";
 
 interface LocalizationService {
   getLocalization: (key: string) => { data: string };
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserObj: React.Dispatch<React.SetStateAction<Record<string, any> | null>>;
+  userObj: Record<string, any> | null;
+  setIsDeleteOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface PhoneBookData {
@@ -143,6 +147,10 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
           <div className="col-md-12" style={{ paddingRight: "24px" }}>
             {/* Action buttons */}
             <a
+              onClick={() => {
+                localizationService.setUserObj(null);
+                localizationService.setIsOpen(true);
+              }}
               className="create-user-modal"
               title={localizationService.getLocalization("CDR_AddUser").data}
             >
@@ -153,6 +161,11 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
               />
             </a>
             <a
+              onClick={() => {
+                if (localizationService.userObj !== null) {
+                  localizationService.setIsOpen(true);
+                }
+              }}
               className="update-user-modal ml-1"
               title={localizationService.getLocalization("CDR_UpdateUser").data}
             >
@@ -163,6 +176,11 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
               />
             </a>
             <a
+              onClick={() => {
+                if (localizationService.userObj !== null) {
+                  localizationService.setIsDeleteOpen(true);
+                }
+              }}
               className="deleteRows ml-1"
               title={localizationService.getLocalization("CDR_DeleteUser").data}
             >
@@ -210,6 +228,7 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
             onChangeRowsPerPage={(currentRowsPerPage) =>
               setPerPage(currentRowsPerPage)
             }
+            onRowClicked={(row) => localizationService.setUserObj(row)}
           />
         </div>
       </div>

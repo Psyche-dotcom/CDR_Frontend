@@ -1,9 +1,12 @@
+"use client";
+
 import DashboardCrumb from "@/components/dashboardcrumb";
-import React from "react";
+import React, { useState } from "react";
 import SupportContent from "./support_content";
 import Script from "next/script";
 
 const SupportMainSection2 = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <>
       <Script
@@ -28,6 +31,7 @@ const SupportMainSection2 = () => {
               <button
                 className="btn btn-primary create-support-btn"
                 id="create-support-button"
+                onClick={() => setIsOpen(true)}
               >
                 <i className="ft-edit-3"></i> Create Ticket
               </button>
@@ -35,7 +39,7 @@ const SupportMainSection2 = () => {
           </>
         }
       />
-      <SupportContent />
+      <SupportContent isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };

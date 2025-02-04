@@ -4,7 +4,23 @@ import React from "react";
 import FilterFormField from "../filterfied";
 import UserTablev3 from "../usertable";
 
-const PhoneBookContent = () => {
+const PhoneBookContent = ({
+  setIsOpen,
+  setUserObj,
+  userObj,
+  setIsDeleteOpen,
+  filterFormData,
+  setFilterFormData,
+}: {
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserObj: React.Dispatch<React.SetStateAction<Record<string, any> | null>>;
+  userObj: Record<string, any> | null;
+  setIsDeleteOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setFilterFormData: React.Dispatch<
+    React.SetStateAction<Record<string, any> | null>
+  >;
+  filterFormData: Record<string, any> | null;
+}) => {
   const localizationService = {
     getLocalization: (key: string) => {
       const translations: { [key: string]: { data: string } } = {
@@ -23,6 +39,12 @@ const PhoneBookContent = () => {
       };
       return translations[key] || { data: key };
     },
+    setIsOpen: setIsOpen,
+    setUserObj: setUserObj,
+    userObj: userObj,
+    setIsDeleteOpen: setIsDeleteOpen,
+    filterFormData: filterFormData,
+    setFilterFormData: setFilterFormData,
   };
   return (
     <PhoneBookCard title="Contacts">

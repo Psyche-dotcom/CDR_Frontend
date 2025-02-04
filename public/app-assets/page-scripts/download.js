@@ -25,7 +25,7 @@ function GetDownloadInfo(url) {
     },
     success: function (obj) {
       $("#DownloadSliderContent").html(obj);
-
+      console.log("Obj data!", obj);
       $("#OwlDownload").owlCarousel({
         items: 1,
         rewind: true,
