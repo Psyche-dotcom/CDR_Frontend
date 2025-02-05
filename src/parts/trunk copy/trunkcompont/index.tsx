@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 const mockData = {
   AllTrunksActiveCalls: [],
   AllTrunksInfo: [
-    "name:WebMeeting bridge,id:90000,trunkno:,activecalls:0,inbound:0,outbound:0",
-    "name:Avencom Telekom,id:10000,trunkno:08504600714,activecalls:0,inbound:0,outbound:0",
-    "name:Avencom 0232 750 50 00-29,id:10001,trunkno:902327505000,activecalls:0,inbound:0,outbound:0",
+    "name:WebMeeting bridge,id:1,trunkno:,activecalls:0,inbound:0,outbound:0",
+    "name:Avencom Telekom,id:2,trunkno:08504600714,activecalls:0,inbound:0,outbound:0",
+    "name:Avencom 0232 750 50 00-29,id:3,trunkno:902327505000,activecalls:0,inbound:0,outbound:0",
   ],
 };
 
@@ -19,7 +19,7 @@ interface TrunkInfo {
   outbound: number;
 }
 
-const TrunkComponent = () => {
+const TrunkComponent = ({ checkboxes }: { checkboxes: any }) => {
   const [loading, setLoading] = useState(true);
   const [allTrunksInfo, setAllTrunksInfo] = useState<TrunkInfo[]>([]);
 
@@ -84,12 +84,14 @@ const TrunkComponent = () => {
       {/* Render individual trunk cards */}
       {allTrunksInfo.map((trunk) => (
         <TrunkCard
-          key={trunk.id}
           id={trunk.id}
           name={trunk.name}
           active={trunk.active}
           inbound={trunk.inbound}
           outbound={trunk.outbound}
+          key={trunk.id}
+          showCard={false}
+          checkboxes={checkboxes}
         />
       ))}
     </div>

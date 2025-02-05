@@ -11,6 +11,8 @@ interface TrunkCardProps {
   inbound: number;
   outbound: number;
   isParent?: boolean;
+  showCard?: boolean;
+  checkboxes?: any;
 }
 
 const TrunkCard = ({
@@ -20,6 +22,8 @@ const TrunkCard = ({
   inbound,
   outbound,
   isParent = false,
+  showCard = true,
+  checkboxes,
 }: TrunkCardProps) => {
   const chartRef = useRef<am4charts.RadarChart | null>(null);
 
@@ -111,7 +115,13 @@ const TrunkCard = ({
   }, [id, inbound, outbound]);
 
   return (
-    <div className="col-xl-3 col-md-6 column" id={`trunk-item-${id}`}>
+    <div
+      className="col-xl-3 col-md-6 column"
+      id={`trunk-item-${id}`}
+      style={{
+        display: checkboxes?.includes(id) || showCard ? "block" : "none",
+      }}
+    >
       <div className="card pull-up bg-hexagons trunk-card-design">
         <div className="card-header" style={{ background: "none" }}>
           <h4 className="card-title">

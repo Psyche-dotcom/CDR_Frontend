@@ -2,29 +2,38 @@
 import CheckBox from "@/components/Input/checkbox";
 import React, { useState } from "react";
 
-const ChangeTrunk = () => {
-  const [checkboxes, setCheckboxes] = useState([
-    { id: 1, value: "9000", checked: false, name: " WebMeeting bridge" },
-    { id: 2, value: "16676", checked: true, name: " WebMeeting" },
-    { id: 3, value: "124235456", checked: false, name: "bridge" },
-  ]);
-
+const ChangeTrunk = ({
+  isOpen,
+  onClose,
+  setCheckboxes,
+  checkboxes,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  setCheckboxes: any;
+  checkboxes: any;
+}) => {
   const handleCheckboxChange = (value: string, checked: boolean) => {
-    setCheckboxes((prevCheckboxes) =>
-      prevCheckboxes.map((checkbox) =>
+    setCheckboxes((prevCheckboxes: any) =>
+      prevCheckboxes.map((checkbox: any) =>
         checkbox.value === value ? { ...checkbox, checked } : checkbox
       )
     );
   };
   return (
     <div
-      className="modal fade text-left"
+      className="modal fade text-left show"
       id="default-modal"
       tabIndex={-1}
       role="dialog"
       aria-labelledby="myModalLabel1"
       aria-hidden="true"
-      style={{ display: "none" }}
+      style={{
+        display: isOpen ? "block" : "none",
+        backdropFilter: "blur(3px)", // Adding the blur effect
+        WebkitBackdropFilter: "blur(10px)", // For Safari support
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+      }}
     >
       <div className="modal-dialog" role="document">
         <div className="modal-content">
@@ -38,6 +47,7 @@ const ChangeTrunk = () => {
               className="close"
               data-dismiss="modal"
               aria-label="Close"
+              onClick={onClose}
             >
               <span aria-hidden="true">×</span>
             </button>
@@ -54,7 +64,7 @@ const ChangeTrunk = () => {
               {/* {localize("CDR_EnCok3SecimYap")} */}
             </div>
             <div className="row" id="trunk-modal-container">
-              {checkboxes.map((checkbox) => (
+              {checkboxes.map((checkbox: any) => (
                 <CheckBox
                   key={checkbox.id}
                   value={checkbox.value}
@@ -70,6 +80,7 @@ const ChangeTrunk = () => {
               type="button"
               className="btn grey btn-outline-secondary"
               data-dismiss="modal"
+              onClick={onClose}
             >
               Close
               {/* {localize("CDR_Close")} */}
@@ -78,6 +89,7 @@ const ChangeTrunk = () => {
               type="button"
               className="btn btn-primary"
               id="ChangeTrunkView"
+              onClick={onClose}
             >
               Save Changes
               {/* {localize("CDR_SaveChanges")} */}

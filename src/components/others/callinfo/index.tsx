@@ -18,6 +18,20 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
   const handleClose = () => {
     setStatus(false);
   };
+  const reportDetails = {
+    callId: 11212,
+    caller1: "05321338050",
+    caller2: "Turkce ( 8003 )",
+    startTime: "10:35:36",
+    endTime: "10:35:36",
+    callDate: "28.01.2025 10:35:36",
+    status: "answered",
+    type: "inbound",
+    talkTime: " 00:00:00",
+    ringTime: " 00:00:00",
+    duration: " 00:00:17",
+    endDate: "28.01.2025 10:38:36",
+  };
 
   return (
     <div
@@ -47,7 +61,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   alt="From Avatar"
                 />
               </div>
-              <h3>05321338050</h3>
+              <h3>{reportDetails?.caller1}</h3>
             </div>
             <div className="col-md-6 text-center">
               <div className="to-avatar detail-avatar">
@@ -56,7 +70,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   alt="To Avatar"
                 />
               </div>
-              <h3>Turkce ( 8003 )</h3>
+              <h3>{reportDetails?.caller2}</h3>
             </div>
           </div>
         </div>
@@ -129,7 +143,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                       src="/app-assets/images/icons/timeline-calender-green.svg"
                       alt="Calendar"
                     />{" "}
-                    28.01.2025 10:35:36
+                    {reportDetails?.callDate}
                   </p>
                   <div className="clearfix"></div>
                   <img
@@ -141,7 +155,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   <div className="call-detail-message-content left">
                     <div className="call-detail-message-item">
                       <div className="item-text">
-                        IVR (8000) replaced by Turkce(8003)
+                        IVR (8000) replaced by {reportDetails?.caller2}
                       </div>
                     </div>
                     <div className="call-detail-clock-item">
@@ -150,7 +164,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                           src="/app-assets/images/icons/timeline-clock-green.svg"
                           alt="Clock"
                         />{" "}
-                        10:35:36
+                        {reportDetails?.startTime}
                       </div>
                       <div className="clearfix"></div>
                       <div className="talk-time">
@@ -158,7 +172,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                           src="/app-assets/images/icons/timeline-speaking.svg"
                           alt="Speaking"
                         />{" "}
-                        00:00:17 10:35:53
+                        {reportDetails?.duration} {reportDetails?.startTime}
                       </div>
                       <div className="clearfix"></div>
                       <div className="end-time">
@@ -166,7 +180,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                           src="/app-assets/images/icons/timeline-clock-red.svg"
                           alt="Clock"
                         />{" "}
-                        10:35:53
+                        {reportDetails?.endTime}
                       </div>
                     </div>
                     <div className="clearfix"></div>
@@ -178,14 +192,14 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                           src="/app-assets/images/icons/timeline-bell.svg"
                           alt="Bell"
                         />{" "}
-                        Ringing : 00:00:00
+                        Ringing : {reportDetails?.ringTime}
                       </div>
                     </div>
                   </div>
                   <div className="call-detail-message-content right">
                     <div className="call-detail-message-item">
                       <div className="item-text">
-                        Terminated by Turkce(Ext.8003)
+                        Terminated by ext {reportDetails?.caller2}
                       </div>
                     </div>
                     <div className="call-detail-clock-item">
@@ -194,7 +208,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                           src="/app-assets/images/icons/timeline-clock-green.svg"
                           alt="Clock"
                         />{" "}
-                        10:35:53
+                        {reportDetails?.startTime}
                       </div>
                       <div className="clearfix"></div>
                       <div className="talk-time">
@@ -202,7 +216,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                           src="/app-assets/images/icons/timeline-speaking.svg"
                           alt="Speaking"
                         />{" "}
-                        00:00:00 10:35:53
+                        {reportDetails?.duration} {reportDetails?.startTime}
                       </div>
                       <div className="clearfix"></div>
                       <div className="end-time">
@@ -210,7 +224,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                           src="/app-assets/images/icons/timeline-clock-red.svg"
                           alt="Clock"
                         />{" "}
-                        10:35:53
+                        {reportDetails?.endTime}
                       </div>
                     </div>
                     <div className="clearfix"></div>
@@ -226,7 +240,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                       src="/app-assets/images/icons/timeline-calender-red.svg"
                       alt="Calendar"
                     />{" "}
-                    28.01.2025 10:35:53
+                    {reportDetails?.endDate}
                   </p>
                 </div>
               </div>
@@ -242,7 +256,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                     <p className="title">Call Id:</p>
                   </div>
                   <div className="col-md-6" style={{ fontSize: "16px" }}>
-                    11212
+                    {reportDetails?.callId}
                   </div>
                 </div>
                 <div className="row">
@@ -255,7 +269,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                         src="/app-assets/images/icons/user-from.svg"
                         alt="User"
                       />{" "}
-                      05321338050
+                      {reportDetails?.caller1}
                     </div>
                   </div>
                 </div>
@@ -269,7 +283,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                         src="/app-assets/images/icons/user-to.svg"
                         alt="User"
                       />{" "}
-                      Turkce ( 8003 )
+                      {reportDetails?.caller2}
                     </div>
                   </div>
                 </div>
@@ -279,7 +293,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   </div>
                   <div className="col-md-6">
                     <div className="table-column-duration">
-                      <i className="la la-clock"></i> 00:00:17
+                      <i className="la la-clock"></i> {reportDetails?.duration}
                     </div>
                   </div>
                 </div>
@@ -289,7 +303,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   </div>
                   <div className="col-md-6">
                     <div className="table-column-talktime">
-                      <i className="la la-clock"></i> 00:00:00
+                      <i className="la la-clock"></i> {reportDetails?.talkTime}
                     </div>
                   </div>
                 </div>
@@ -299,7 +313,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   </div>
                   <div className="col-md-6">
                     <div className="table-column-ringtime">
-                      <i className="la la-clock"></i> 00:00:00
+                      <i className="la la-clock"></i> {reportDetails?.ringTime}
                     </div>
                   </div>
                 </div>
@@ -313,7 +327,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                         src="/app-assets/images/icons/filter-calendar.svg"
                         alt="Calendar"
                       />{" "}
-                      28.01.2025
+                      {reportDetails?.callDate}
                     </div>
                   </div>
                 </div>
@@ -323,7 +337,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   </div>
                   <div className="col-md-6">
                     <div className="table-column-starttime">
-                      <i className="la la-clock"></i> 10:35:36
+                      <i className="la la-clock"></i> {reportDetails?.startTime}
                     </div>
                   </div>
                 </div>
@@ -333,7 +347,7 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                   </div>
                   <div className="col-md-6">
                     <div className="table-column-stoptime">
-                      <i className="la la-clock"></i> 10:35:53
+                      <i className="la la-clock"></i> {reportDetails?.endTime}
                     </div>
                   </div>
                 </div>
@@ -342,7 +356,15 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                     <p className="title">Type:</p>
                   </div>
                   <div className="col-md-6">
-                    <span className="badge badge-success">inbound</span>
+                    <span
+                      className={`badge ${
+                        reportDetails?.type.toLowerCase() === "inbound"
+                          ? "badge-success"
+                          : ""
+                      }`}
+                    >
+                      {reportDetails?.type}
+                    </span>
                   </div>
                 </div>
                 <div className="row">
@@ -350,12 +372,18 @@ const CallInfoDetails: React.FC<CallInfoDetailsProps> = ({
                     <p className="title">Status:</p>
                   </div>
                   <div className="col-md-6">
-                    <span className="badge badge-completed">
+                    <span
+                      className={`badge ${
+                        reportDetails?.status.toLowerCase() === "answered"
+                          ? "badge-completed"
+                          : ""
+                      }`}
+                    >
                       <i
                         className="la la-check"
                         style={{ fontSize: "unset" }}
                       ></i>{" "}
-                      answered
+                      {reportDetails?.status}
                     </span>
                   </div>
                 </div>

@@ -3,7 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useGetTrunkUserInfo } from "@/services/api_service/company_service";
 import { json } from "stream/consumers";
 import TrunkComponent from "../trunkcompont";
-const IPhide = () => {
+const IPhide = ({
+  setIsOpen,
+  checkboxes,
+}: {
+  checkboxes: any;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [ipAddress, setIpAddress] = useState("");
   const [gmt, setGmt] = useState("");
   const {
@@ -47,6 +53,7 @@ const IPhide = () => {
         data-target="#default-modal"
         className="btn btn-primary"
         style={{ marginTop: "-100px;" }}
+        onClick={() => setIsOpen(true)}
       >
         Change Trunk
         {/* @_staticService.GetLocalization("CDR_ChangeTrunk").Data */}
@@ -54,7 +61,7 @@ const IPhide = () => {
       <button id="AgentBusyButton" style={{ display: "none" }}>
         Socket button
       </button>
-      <TrunkComponent />
+      <TrunkComponent checkboxes={checkboxes} />
     </>
   );
 };

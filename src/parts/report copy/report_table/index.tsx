@@ -5,13 +5,15 @@ import CardHeader from "../ReportCardtableHeader";
 import TableHeader from "../TableHeader";
 import DataTable from "datatables.net-dt";
 import CallInfoDetails from "@/components/others/callinfo";
+import $ from "jquery";
 // import "datatables.net-dt/css/jquery.dataTables.css";
 
 const ReportTable: React.FC = () => {
   const tableRef = useRef<HTMLTableElement>(null);
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [open, setopen] = useState<boolean>(true);
+  const [open, setopen] = useState<boolean>(false);
+  const [reportObject, setReportObject] = useState<any>();
   let json = {
     $id: "1",
     draw: 1,
@@ -265,6 +267,9 @@ const ReportTable: React.FC = () => {
         language: Localization,
       });
     }
+    $(document).on("click", ".CallDetailsButton", function () {
+      setopen(true);
+    });
   }, [loading, data]);
 
   const headers = [
