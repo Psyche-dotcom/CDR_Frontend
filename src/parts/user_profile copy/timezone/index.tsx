@@ -294,7 +294,7 @@ const ProfileTImeZone = () => {
                         (GMT+13:00) Auckland, Wellington
                       </option>
                       <option value="Pacific/Tongatapu" data-timezone="+13:00">
-                        (GMT+13:00) Nuku'alofa
+                        (GMT+13:00) Nukualofa
                       </option>
                     </select>
                     <span

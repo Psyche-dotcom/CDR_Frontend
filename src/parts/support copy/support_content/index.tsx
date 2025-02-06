@@ -52,10 +52,10 @@ const SupportContent: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
               <div className="card-content">
                 <ul className="support-list" id="support-list">
                   <SupportCardInfo
-                    cat={""}
-                    date={""}
-                    subject={""}
-                    subinfo={""}
+                    cat={"100033"}
+                    date={"19.12.2024"}
+                    subject={"Ideas"}
+                    subinfo={"birileri var mı?"}
                   />
                 </ul>
               </div>

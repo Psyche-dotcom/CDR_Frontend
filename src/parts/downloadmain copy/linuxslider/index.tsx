@@ -49,7 +49,7 @@ export default function LinuxSlider() {
                           <li>
                             According to the operating system on which the 3CX
                             Switchboard system version 18 is installed, download
-                            the relevant installation package from the “
+                            the relevant installation package from the &ldquo;
                             <a
                               href="https://cdrcloud.com/Home/Download"
                               target="_blank"
@@ -57,7 +57,7 @@ export default function LinuxSlider() {
                             >
                               https://cdrcloud.com/Home/Download
                             </a>
-                            ”
+                            &rdquo;
                           </li>
                           <li>
                             Make sure there is 100 Mb of free space for the
@@ -91,7 +91,7 @@ export default function LinuxSlider() {
                         <ul>
                           <li>
                             Go to the directory where you will download the
-                            installation file, run the “wget{" "}
+                            installation file, run the &ldquo;wget{" "}
                             <a
                               href="https://cdrcloud.com/setup/"
                               target="_blank"
@@ -99,13 +99,14 @@ export default function LinuxSlider() {
                             >
                               cdrcloud.com/setup/
                             </a>
-                            cdr-service-v18.deb” command and download the
+                            cdr-service-v18.deb&rdquo; command and download the
                             installation package with the .deb extension.
                           </li>
                           <li>
-                            After the installation is complete, run the "ls"
-                            command and make sure you can see the "cdr-service-
-                            v18.deb" file in the directory.
+                            After the installation is complete, run the
+                            &ldquo;ls&rdquo; command and make sure you can see
+                            the &ldquo;cdr-service- v18.deb&rdquo; file in the
+                            directory.
                           </li>
                         </ul>
                       </div>
@@ -126,7 +127,7 @@ export default function LinuxSlider() {
                         <ul>
                           <li>
                             Complete the service installation by running the
-                            command “dpkg –i cdr-service-v18.deb ”.
+                            command &ldquo;dpkg –i cdr-service-v18.deb&rdquo;.
                           </li>
                         </ul>
                       </div>
@@ -161,7 +162,8 @@ export default function LinuxSlider() {
                         <ul>
                           <li>
                             Check that the CDR service is running by entering
-                            the "systemctl status cdr-service" command.
+                            the &ldquo;systemctl status cdr-service&rdquo;
+                            command.
                           </li>
                         </ul>
                       </div>
@@ -203,7 +205,8 @@ export default function LinuxSlider() {
                           </li>
                           <li>
                             Click on the account icon in the upper right corner
-                            of the page and switch to the "Profile" page.
+                            of the page and switch to the &ldquo;Profile&rdquo;
+                            page.
                           </li>
                         </ul>
                       </div>
@@ -219,26 +222,28 @@ export default function LinuxSlider() {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            In the "Connection Status" tab that appears, in the
-                            "FQDN" field, type the WAN IP address or FQDN
-                            address where we can reach your 3CX PBX system.
+                            In the &ldquo;Connection Status&rdquo; tab that
+                            appears, in the &ldquo;FQDN&rdquo; field, type the
+                            WAN IP address or FQDN address where we can reach
+                            your 3CX PBX system.
                           </li>
                           <li>
-                            In the "Port" field, select the "WINDOWS(5480),
-                            LINUX(5432)" port according to your operating
-                            system.
+                            In the &ldquo;Port&rdquo; field, select the
+                            &ldquo;WINDOWS(5480), LINUX(5432)&rdquo; port
+                            according to your operating system.
                           </li>
                           <li>
-                            Save your settings by selecting the "V18" option in
-                            the "3CX Version" field and pressing the "Save &amp;
-                            Close" button.
+                            Save your settings by selecting the
+                            &ldquo;V18&rdquo; option in the &ldquo;3CX
+                            Version&rdquo; field and pressing the &ldquo;Save
+                            &amp; Close&rdquo; button.
                           </li>
                         </ul>
                         <p>
                           <b>NOTE:</b> Leave the Database Name, Database
                           Username, Database Password fields blank. The
-                          “cdr-service” service will automatically fill in this
-                          information.
+                          &ldquo;cdr-service&rdquo; service will automatically
+                          fill in this information.
                         </p>
                       </div>
                       <div className="col-md-6">
@@ -253,9 +258,10 @@ export default function LinuxSlider() {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Switch to the “Connection Status” tab and verify
-                            that the “Database Connection Status” and “Socket
-                            Connection Status” states are “Connected”.
+                            Switch to the &ldquo;Connection Status&rdquo; tab
+                            and verify that the &ldquo;Database Connection
+                            Status&rdquo; and &ldquo;Socket Connection
+                            Status&rdquo; states are &ldquo;Connected&rdquo;.
                           </li>
                         </ul>
                       </div>

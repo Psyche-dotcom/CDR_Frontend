@@ -264,6 +264,7 @@ const ReportTable: React.FC = () => {
         searching: false,
         processing: true,
         pageLength: 10,
+        //@ts-ignore
         language: Localization,
       });
     }

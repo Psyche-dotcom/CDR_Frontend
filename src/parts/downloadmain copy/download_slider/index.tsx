@@ -59,7 +59,7 @@ const DownloadSlider = () => {
                           <li>
                             According to the operating system on which 3CX
                             Switchboard system version 18 is installed, download
-                            the relevant installation package from
+                            the relevant installation package from &ldquo;
                             <a
                               href="https://cdrcloud.com/Home/Download"
                               target="_blank"
@@ -67,7 +67,7 @@ const DownloadSlider = () => {
                             >
                               https://cdrcloud.com/Home/Download
                             </a>
-                            .
+                            &rdquo;.
                           </li>
                           <li>
                             Make sure there is 100 Mb of free space for the
@@ -132,8 +132,8 @@ const DownloadSlider = () => {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Run the “K2M Call Detail Reports.exe” file you
-                            downloaded from www.cdrcloud.com.
+                            Run the &ldquo;K2M Call Detail Reports.exe&rdquo;
+                            file you downloaded from www.cdrcloud.com.
                           </li>
                         </ul>
                       </div>
@@ -152,8 +152,8 @@ const DownloadSlider = () => {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Start the installation by clicking the "Download"
-                            button.
+                            Start the installation by clicking the
+                            &ldquo;Download&rdquo; button.
                           </li>
                         </ul>
                       </div>
@@ -172,8 +172,8 @@ const DownloadSlider = () => {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Complete the installation by clicking the “Finish”
-                            button.
+                            Complete the installation by clicking the
+                            &ldquo;Finish&rdquo; button.
                           </li>
                         </ul>
                       </div>
@@ -192,8 +192,9 @@ const DownloadSlider = () => {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Open the "Services" window and check that the
-                            "CDRApiService" service is running.
+                            Open the &ldquo;Services&rdquo; window and check
+                            that the &ldquo;CDRApiService&rdquo; service is
+                            running.
                           </li>
                         </ul>
                       </div>
@@ -237,7 +238,7 @@ const DownloadSlider = () => {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Create a CDRCloud account at
+                            Create a CDRCloud account at &ldquo;
                             <a
                               href="https://cdrcloud.com/Panel/User/Register"
                               target="_blank"
@@ -245,10 +246,10 @@ const DownloadSlider = () => {
                             >
                               https://cdrcloud.com/Panel/User/Register
                             </a>
-                            .
+                            &rdquo;.
                           </li>
                           <li>
-                            Sign in to your account at
+                            Sign in to your account at &ldquo;
                             <a
                               href="https://cdrcloud.com/Panel/User/Login"
                               target="_blank"
@@ -256,11 +257,12 @@ const DownloadSlider = () => {
                             >
                               https://cdrcloud.com/Panel/User/Login
                             </a>
-                            .
+                            &rdquo;.
                           </li>
                           <li>
                             Click on the account icon in the upper right corner
-                            of the page and switch to the "Profile" page.
+                            of the page and switch to the &ldquo;Profile&rdquo;
+                            page.
                           </li>
                         </ul>
                       </div>

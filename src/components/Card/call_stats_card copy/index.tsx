@@ -65,4 +65,7 @@ const CallStatsCardCopy = forwardRef<HTMLCanvasElement, Props>(
   }
 );
 
+// Set the display name for the component
+CallStatsCardCopy.displayName = "CallStatsCardCopy";
+
 export default CallStatsCardCopy;
