@@ -6,12 +6,6 @@ const LayoutScript = () => {
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script
-        src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous"
-      ></script>
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       <script

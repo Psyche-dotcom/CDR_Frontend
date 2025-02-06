@@ -27,7 +27,13 @@ const TrunkMain2 = () => {
         href="/app-assets/vendors/css/tables/datatable/datatables.min.css"
         rel="stylesheet"
       /> */}
-
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        //@ts-ignore
+        crossorigin="anonymous"
+      ></script>
       <Script
         src="/app-assets/amchart-trunk/core.js"
         strategy="afterInteractive"

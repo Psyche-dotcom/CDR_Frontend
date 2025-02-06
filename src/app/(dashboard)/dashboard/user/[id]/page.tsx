@@ -1,4 +1,4 @@
-import UserExtensionMainPage from "@/parts/userextensionpage";
+import UserExtensionMainPage2 from "@/parts/userextensionpage copy";
 import React from "react";
 
 interface ProfileExtensionPageProps {
@@ -12,7 +12,7 @@ const ProfileExtensionPage: React.FC<ProfileExtensionPageProps> = ({
 }) => {
   return (
     <>
-      <UserExtensionMainPage id={params.id} />
+      <UserExtensionMainPage2 id={params.id} />
     </>
   );
 };

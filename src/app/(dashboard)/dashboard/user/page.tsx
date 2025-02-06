@@ -1,10 +1,10 @@
-import ExtensionMainSection from "@/parts/extension";
+import ExtensionMainSection2 from "@/parts/extension copy";
 import React from "react";
 
 const UserPageExtension = () => {
   return (
     <>
-      <ExtensionMainSection />
+      <ExtensionMainSection2 />
     </>
   );
 };
