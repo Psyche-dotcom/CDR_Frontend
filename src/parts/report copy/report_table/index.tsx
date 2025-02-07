@@ -2,17 +2,29 @@
 
 import { useEffect, useRef, useState } from "react";
 import CardHeader from "../ReportCardtableHeader";
-import TableHeader from "../TableHeader";
-import DataTable from "datatables.net-dt";
 import CallInfoDetails from "@/components/others/callinfo";
-import $ from "jquery";
-// import "datatables.net-dt/css/jquery.dataTables.css";
+import DataTable, { TableColumn } from "react-data-table-component";
+
+interface ReportData {
+  tablecolumndate: string;
+  tablecolumnstarttime: string;
+  tablecolumnfrom: string;
+  tablecolumnto: string;
+  tablecolumninorout: string;
+  tablecolumnduration: string;
+  tablecolumntalktime: string;
+  tablecolumnstatus: string;
+  tablecolumnbutton: string;
+}
 
 const ReportTable: React.FC = () => {
   const tableRef = useRef<HTMLTableElement>(null);
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [open, setopen] = useState<boolean>(false);
+  const [totalRows, setTotalRows] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+  const [perPage, setPerPage] = useState<number>(20);
   const [reportObject, setReportObject] = useState<any>();
   let json = {
     $id: "1",
@@ -218,21 +230,74 @@ const ReportTable: React.FC = () => {
     },
     reportDate: "2025/01/27 08:47:27",
   };
-  const Localization = {
-    sEmptyTable: "No data available in table",
-    sInfo: "Showing _START_ to _END_ of _TOTAL_ entries",
-    sInfoEmpty: "Showing 0 to 0 of 0 entries",
-    sInfoFiltered: "(filtered from _MAX_ total entries)",
-    sLengthMenu: "Show _MENU_ entries",
-    sLoadingRecords: "Loading...",
-    sProcessing: "Processing...",
-    sSearch: "Search",
-    sZeroRecords: "No matching records found",
-    sFirst: "First",
-    sLast: "Last",
-    sNext: "Next",
-    sPrevious: "Previous",
-  };
+  const columns: TableColumn<ReportData>[] = [
+    {
+      name: "Date",
+      selector: (row) => row.tablecolumndate,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumndate }} />
+      ),
+    },
+    {
+      name: "Start Time",
+      selector: (row) => row.tablecolumnstarttime,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumnstarttime }} />
+      ),
+    },
+    {
+      name: "From",
+      selector: (row) => row.tablecolumnfrom,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumnfrom }} />
+      ),
+    },
+    {
+      name: "To",
+      selector: (row) => row.tablecolumnto,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumnto }} />
+      ),
+    },
+    {
+      name: "Type",
+      selector: (row) => row.tablecolumninorout,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumninorout }} />
+      ),
+    },
+    {
+      name: "Duration",
+      selector: (row) => row.tablecolumnduration,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumnduration }} />
+      ),
+    },
+    {
+      name: "Talk Time",
+      selector: (row) => row.tablecolumntalktime,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumntalktime }} />
+      ),
+    },
+    {
+      name: "Status",
+      selector: (row) => row.tablecolumnstatus,
+      cell: (row) => (
+        <div dangerouslySetInnerHTML={{ __html: row.tablecolumnstatus }} />
+      ),
+    },
+    {
+      name: "Action",
+      selector: (row) => row.tablecolumnbutton,
+      cell: (row) => (
+        <div
+          onClick={() => setopen(true)}
+          dangerouslySetInnerHTML={{ __html: row.tablecolumnbutton }}
+        />
+      ),
+    },
+  ];
 
   const fetchData = async () => {
     setLoading(true);
@@ -243,46 +308,6 @@ const ReportTable: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (tableRef.current && !loading) {
-      new DataTable(tableRef.current, {
-        data: data,
-        columns: [
-          { data: "call_id", visible: false },
-          { data: "tablecolumndate", title: "Date" },
-          { data: "tablecolumnstarttime", title: "Start Time" },
-          { data: "tablecolumnfrom", title: "From" },
-          { data: "tablecolumnto", title: "To" },
-          { data: "tablecolumninorout", title: "Type" },
-          { data: "tablecolumnduration", title: "Duration" },
-          { data: "tablecolumntalktime", title: "Talk Time" },
-          { data: "tablecolumnstatus", title: "Status" },
-          { data: "tablecolumnbutton", title: "Actions", orderable: false },
-        ],
-        paging: true,
-        searching: false,
-        processing: true,
-        pageLength: 10,
-        language: Localization,
-      });
-    }
-    $(document).on("click", ".CallDetailsButton", function () {
-      setopen(true);
-    });
-  }, [loading, data]);
-
-  const headers = [
-    "Date",
-    "Start Time",
-    "From",
-    "To",
-    "Type",
-    "Duration",
-    "Talk Time",
-    "Status",
-    "Actions",
-  ];
 
   return (
     <>
@@ -295,16 +320,20 @@ const ReportTable: React.FC = () => {
           <div className="card">
             <CardHeader title="Reports" />
             <div className="card-content">
-              <div className="table-responsive mt-2 mb-2">
-                <table
-                  ref={tableRef}
-                  className="table table-de mb-0 report-table display nowrap table-hover"
-                  id="AllTable"
-                  style={{ width: "100%" }}
-                >
-                  <TableHeader headers={headers} />
-                  <tbody></tbody>
-                </table>
+              <div className="mt-2 mb-2 table-responsive">
+                <DataTable
+                  columns={columns}
+                  data={data}
+                  progressPending={loading}
+                  pagination
+                  paginationServer
+                  paginationTotalRows={totalRows}
+                  onChangePage={(page) => setPage(page)}
+                  onChangeRowsPerPage={(currentRowsPerPage) =>
+                    setPerPage(currentRowsPerPage)
+                  }
+                  // onRowClicked={(row) => localizationService.setUserObj(row)}
+                />
               </div>
             </div>
           </div>

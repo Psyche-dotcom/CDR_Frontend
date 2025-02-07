@@ -1,9 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import DataTable from "datatables.net-dt";
-// import "https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css";
-//import "datatables.net-responsive-dt";
-// import "datatables.net-dt/css/jquery.dataTables.css";
+
 interface TrunkCall {
   status: string;
   caller: string;
@@ -131,6 +129,21 @@ const TrunkDataTable = ({
                 <tbody></tbody>
               </table>
             </div>
+            {/* <div className="mt-2 mb-2 table-responsive">
+                <DataTable
+                  columns={columns}
+                  data={data}
+                  progressPending={loading}
+                  pagination
+                  paginationServer
+                  paginationTotalRows={totalRows}
+                  onChangePage={(page) => setPage(page)}
+                  onChangeRowsPerPage={(currentRowsPerPage) =>
+                    setPerPage(currentRowsPerPage)
+                  }
+                  // onRowClicked={(row) => localizationService.setUserObj(row)}
+                />
+              </div> */}
           </div>
         </div>
       </div>
