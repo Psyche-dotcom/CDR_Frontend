@@ -152,8 +152,8 @@ const DownloadSlider = () => {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Start the installation by clicking the "Download"
-                            button.
+                            Start the installation by clicking the
+                            &quot;Download&quot; button.
                           </li>
                         </ul>
                       </div>
@@ -192,8 +192,8 @@ const DownloadSlider = () => {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            Open the "Services" window and check that the
-                            "CDRApiService" service is running.
+                            Open the &quot;Services&quot; window and check that
+                            the &quot;CDRApiService&quot; service is running.
                           </li>
                         </ul>
                       </div>
@@ -260,7 +260,8 @@ const DownloadSlider = () => {
                           </li>
                           <li>
                             Click on the account icon in the upper right corner
-                            of the page and switch to the "Profile" page.
+                            of the page and switch to the &quot;Profile&quot;
+                            page.
                           </li>
                         </ul>
                       </div>

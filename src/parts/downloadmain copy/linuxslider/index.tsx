@@ -91,7 +91,7 @@ export default function LinuxSlider() {
                         <ul>
                           <li>
                             Go to the directory where you will download the
-                            installation file, run the “wget{" "}
+                            installation file, run the &quot;wget{" "}
                             <a
                               href="https://cdrcloud.com/setup/"
                               target="_blank"
@@ -99,13 +99,14 @@ export default function LinuxSlider() {
                             >
                               cdrcloud.com/setup/
                             </a>
-                            cdr-service-v18.deb” command and download the
+                            cdr-service-v18.deb&quot; command and download the
                             installation package with the .deb extension.
                           </li>
                           <li>
-                            After the installation is complete, run the "ls"
-                            command and make sure you can see the "cdr-service-
-                            v18.deb" file in the directory.
+                            After the installation is complete, run the
+                            &quot;ls&quot; command and make sure you can see the
+                            &quot;cdr-service- v18.deb&quot; file in the
+                            directory.
                           </li>
                         </ul>
                       </div>
@@ -161,7 +162,8 @@ export default function LinuxSlider() {
                         <ul>
                           <li>
                             Check that the CDR service is running by entering
-                            the "systemctl status cdr-service" command.
+                            the &quot;systemctl status cdr-service&quot;
+                            command.
                           </li>
                         </ul>
                       </div>
@@ -203,7 +205,8 @@ export default function LinuxSlider() {
                           </li>
                           <li>
                             Click on the account icon in the upper right corner
-                            of the page and switch to the "Profile" page.
+                            of the page and switch to the &quot;Profile&quot;
+                            page.
                           </li>
                         </ul>
                       </div>
@@ -219,26 +222,27 @@ export default function LinuxSlider() {
                       <div className="col-md-6">
                         <ul>
                           <li>
-                            In the "Connection Status" tab that appears, in the
-                            "FQDN" field, type the WAN IP address or FQDN
-                            address where we can reach your 3CX PBX system.
+                            In the &quot;Connection Status&quot; tab that
+                            appears, in the &quot;FQDN&quot; field, type the WAN
+                            IP address or FQDN address where we can reach your
+                            3CX PBX system.
                           </li>
                           <li>
-                            In the "Port" field, select the "WINDOWS(5480),
-                            LINUX(5432)" port according to your operating
-                            system.
+                            In the &quot;Port&quot; field, select the
+                            &quot;WINDOWS(5480), LINUX(5432)&quot; port
+                            according to your operating system.
                           </li>
                           <li>
-                            Save your settings by selecting the "V18" option in
-                            the "3CX Version" field and pressing the "Save &amp;
-                            Close" button.
+                            Save your settings by selecting the &quot;V18&quot;
+                            option in the &quot;3CX Version&quot; field and
+                            pressing the &quot;Save &amp; Close&quot; button.
                           </li>
                         </ul>
                         <p>
                           <b>NOTE:</b> Leave the Database Name, Database
                           Username, Database Password fields blank. The
-                          “cdr-service” service will automatically fill in this
-                          information.
+                          &quot;cdr-service&quot; service will automatically
+                          fill in this information.
                         </p>
                       </div>
                       <div className="col-md-6">
