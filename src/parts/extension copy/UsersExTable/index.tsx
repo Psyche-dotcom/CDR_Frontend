@@ -1,7 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import $ from "jquery";
-import "datatables.net";
 
 import DataTable, { TableColumn } from "react-data-table-component";
 interface UserData {
