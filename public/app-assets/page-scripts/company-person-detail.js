@@ -73,6 +73,7 @@ var Dt = $("#CallInfoTable").DataTable({
     },
     data: function (d) {},
     dataSrc: function (json) {
+      console.log("all data", json);
       if (json != null) {
         var result = [];
 

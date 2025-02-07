@@ -54,6 +54,7 @@ var Dt = $("#AllTable").DataTable({
 
     dataSrc: function (json) {
       $("#ReportDate").val(json.reportDate);
+      console.log("dt data", json);
       return json.data.$values;
     },
     beforeSend: function (xhr) {

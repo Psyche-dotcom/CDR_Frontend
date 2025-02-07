@@ -68,6 +68,7 @@ var Dt = $("#DataList").DataTable({
       });
     },
     dataSrc: function (json) {
+      console.log("phone data", json);
       return json.data.$values;
     },
     beforeSend: function (xhr) {
@@ -123,6 +124,7 @@ $(function () {
       Authorization: `Bearer ${token}`,
     },
     success: function (data) {
+      console.log("html data", data);
       placeHolderDiv.html(data);
     },
     error: function (xhr, status, error) {
@@ -395,32 +397,6 @@ $("#AddExcel").click(function () {
 $("#Filter").click(function () {
   Dt.ajax.reload();
 });
-
-// $(".exportExcel").click(function () {
-//   var _ns = $("#NameSurname").val();
-//   var _e = $("#Email").val();
-//   var _p = $("#Phone").val();
-
-//   var sonuc = BaseUrl + "ExportCompanyPhonebook";
-//   var control = true;
-
-//   if (_ns != null && _ns.length > 0) {
-//     sonuc += (control ? "?" : "&") + "NameSurname=" + _ns;
-//     control = false;
-//   }
-
-//   if (_e != null && _e.length > 0) {
-//     sonuc += (control ? "?" : "&") + "Email=" + _e;
-//     control = false;
-//   }
-
-//   if (_p != null && _p.length > 0) {
-//     sonuc += (control ? "?" : "&") + "Phone=" + _p;
-//     control = false;
-//   }
-
-//   window.open(sonuc, "_blank");
-// });
 
 $(".exportExcel").click(function () {
   var _ns = $("#NameSurname").val();

@@ -105,6 +105,7 @@ function GetTopData() {
     },
     success: function (obj) {
       if (obj != null) {
+        console.log("datain", obj);
         var chartData = {
           labels: obj.labels.$values,
           datasets: [
@@ -168,7 +169,7 @@ var Dt2 = $("#CompanyPersonTable").DataTable({
     dataSrc: function (json) {
       if (json != null) {
         var result = [];
-
+        console.log("jsont", json);
         for (var i = 0; i < json.users.$values.length; i++) {
           var newobj = {
             No: json.users.$values[i].dn,

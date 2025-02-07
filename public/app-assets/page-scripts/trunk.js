@@ -111,7 +111,7 @@ function Connect() {
 
 function GetData(message) {
   var _json = JSON.parse(message);
-
+  console.log("sig", _json);
   AllTrunksActiveCalls = _json.AllTrunksActiveCalls;
   AllTrunksInfo = _json.AllTrunksInfo;
 }

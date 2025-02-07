@@ -1,35 +1,26 @@
 "use client";
+import { routes } from "@/services/api_route";
+import { useMutatePostWithoutTokenRequest } from "@/services/api_service/general_service";
 import React, { useState } from "react";
 
 interface ForgotPasswordFormProps {}
 
 const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
-  // Step 2: Create state for the email input field
   const [email, setEmail] = useState<string>("");
-
+  const { responseData, responseError, responseIsLoading, requestPayload } =
+    useMutatePostWithoutTokenRequest((res: any) => {
+      console.log("resno", res.statusCode);
+      if (res.statusCode == 200) {
+        console.log(res);
+      }
+    });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // try {
-    //   // Step 5: Send the email to an API using fetch or any HTTP client of your choice
-    //   const response = await fetch("/api/forgot-password", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email }), // Sending the email to the API
-    //   });
-
-    //   if (response.ok) {
-    //     // Handle success (e.g., show a success message)
-    //     console.log("Email sent successfully");
-    //   } else {
-    //     // Handle error (e.g., show an error message)
-    //     console.error("Error sending email");
-    //   }
-    // } catch (error) {
-    //   console.error("Error:", error);
-    // }
+    const data = {
+      email: email,
+    };
+    requestPayload({ payload: data, route: routes.forgetPassword() });
   };
 
   return (

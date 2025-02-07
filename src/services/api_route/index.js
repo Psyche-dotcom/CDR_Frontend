@@ -11,4 +11,5 @@ export const routes = {
   extensionUrl: () => "/api/company/CompanyUserDetail/",
   windowDownloadUrl: () => "/api/home/DownloadWindows/",
   debisnDownloadUrl: () => "/api/home/DownloadDebian/",
+  forgetPassword: () => "/api/user/ForgotPassword",
 };
