@@ -112,10 +112,12 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
     {
       name: localizationService.getLocalization("CDR_FirstName").data,
       selector: (row) => row.firstname,
+      sortable: true,
     },
     {
       name: localizationService.getLocalization("CDR_LastName").data,
       selector: (row) => row.lastname,
+      sortable: true,
     },
     {
       name: localizationService.getLocalization("CDR_Email").data,
@@ -123,6 +125,7 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tableemail }} />
       ),
+      sortable: true,
     },
     {
       name: localizationService.getLocalization("CDR_Mobile").data,
@@ -130,6 +133,7 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablephone }} />
       ),
+      sortable: true,
     },
     {
       name: localizationService.getLocalization("CDR_CompanyName").data,
@@ -137,6 +141,7 @@ const UserTablev3: React.FC<{ localizationService: LocalizationService }> = ({
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecompany }} />
       ),
+      sortable: true,
     },
   ];
 

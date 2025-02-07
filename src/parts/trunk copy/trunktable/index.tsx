@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
-import DataTable from "datatables.net-dt";
+import { useEffect, useRef, useState } from "react";
+import DataTable, { TableColumn } from "react-data-table-component";
 
 interface TrunkCall {
   status: string;
@@ -8,11 +8,24 @@ interface TrunkCall {
   callee: string;
   type: string;
   duration: string;
-  Icstatus: string;
   id: string;
   callername: string;
   transferredCaller: string;
+  trunkname: string;
+  calleename: string;
+  lastchangestatus: string;
 }
+let json = {
+  $id: "1",
+  draw: 1,
+  recordsFiltered: 215,
+  recordsTotal: 215,
+  data: {
+    $id: "2",
+    $values: [],
+  },
+  reportDate: "2025/01/27 08:47:27",
+};
 
 const TrunkDataTable = ({
   selectedTrunk,
@@ -25,78 +38,69 @@ const TrunkDataTable = ({
   allTrunksInfo: any[];
   themeColorDuration: string[];
 }) => {
-  const tableRef = useRef<HTMLTableElement>(null);
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [totalRows, setTotalRows] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+  const [perPage, setPerPage] = useState<number>(20);
+
+  const columns: TableColumn<TrunkCall>[] = [
+    {
+      name: "Trunk Name",
+      selector: (row) => row.trunkname,
+      sortable: true,
+    },
+    {
+      name: "Caller",
+      selector: (row) => row.caller,
+      sortable: true,
+    },
+    {
+      name: "Caller Name",
+      selector: (row) => row.callername,
+      sortable: true,
+    },
+    {
+      name: "Type",
+      selector: (row) => row.type,
+      sortable: true,
+    },
+    {
+      name: "Callee",
+      selector: (row) => row.callee,
+      sortable: true,
+    },
+    {
+      name: "Callee Name",
+      selector: (row) => row.calleename,
+      sortable: true,
+    },
+    {
+      name: "Duration",
+      selector: (row) => row.duration,
+      sortable: true,
+    },
+    {
+      name: "Status",
+      selector: (row) => row.status,
+      sortable: true,
+    },
+    {
+      name: "Last Change Status",
+      selector: (row) => row.lastchangestatus,
+      sortable: true,
+    },
+  ];
+
+  const fetchData = async () => {
+    setLoading(true);
+    setData(json.data.$values);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    if (tableRef.current) {
-      const _dataTable = new DataTable(tableRef.current, {
-        //@ts-ignore
-        createdRow: (
-          row: HTMLTableRowElement,
-          data: any[],
-          dataIndex: number
-        ) => {
-          const firstCell = row.querySelector("td:first-child");
-          if (firstCell) {
-            firstCell.classList.add("badge-state-border");
-
-            const _id = row.querySelector("div")?.getAttribute("data-id");
-            const _border = document
-              .querySelector(`#trunk-item-${_id} .card`)
-              ?.computedStyleMap()
-              .get("border-left")
-              ?.toString();
-            let _color = "#bfbdbd";
-
-            if (_border) {
-              _color = _border.split(" ").slice(2).join(" ");
-            }
-            //@ts-ignore
-            firstCell.style.borderLeft = `5px solid ${_color}`;
-          }
-
-          const sixthCell = row.querySelector("td:nth-child(7)");
-          if (sixthCell) {
-            //@ts-ignore
-            sixthCell.style.padding = "0 2rem";
-          }
-        },
-        language: {
-          //@ts-ignore
-          sEmptyTable: "No data available in table",
-          sInfo: "Showing _START_ to _END_ of _TOTAL_ entries",
-          sInfoEmpty: "Showing 0 to 0 of 0 entries",
-          sInfoFiltered: "(filtered from _MAX_ total entries)",
-          sLengthMenu: "Show _MENU_ entries",
-          sLoadingRecords: "Loading...",
-          sProcessing: "Processing...",
-          sSearch: "Search:",
-          sZeroRecords: "No matching records found",
-          oPaginate: {
-            sFirst: "First",
-            sLast: "Last",
-            sNext: "Next",
-            sPrevious: "Previous",
-          },
-        },
-        order: [[8, "asc"]],
-      });
-
-      // Populate the table with data
-      DataTableData(
-        _dataTable,
-        selectedTrunk,
-        allTrunksActiveCalls,
-        allTrunksInfo,
-        themeColorDuration
-      );
-
-      // Cleanup on unmount
-      return () => {
-        _dataTable.destroy();
-      };
-    }
-  }, [selectedTrunk, allTrunksActiveCalls, allTrunksInfo, themeColorDuration]);
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -107,43 +111,21 @@ const TrunkDataTable = ({
       <div className="card-content">
         <div className="row">
           <div className="col-md-12">
-            <div className="table-responsive mb-2">
-              <table
-                className="table table-de mb-0 table-striped"
-                id="TrunkDataTable"
-                ref={tableRef}
-              >
-                <thead>
-                  <tr>
-                    <th>Trunk Name</th>
-                    <th>Caller</th>
-                    <th>Caller Name</th>
-                    <th>Type</th>
-                    <th>Callee</th>
-                    <th>Callee Name</th>
-                    <th>Duration</th>
-                    <th>Status</th>
-                    <th>Last Change Status</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+            <div className="mt-2 mb-2 table-responsive">
+              <DataTable
+                columns={columns}
+                data={data}
+                progressPending={loading}
+                pagination
+                paginationServer
+                paginationTotalRows={totalRows}
+                onChangePage={(page) => setPage(page)}
+                onChangeRowsPerPage={(currentRowsPerPage) =>
+                  setPerPage(currentRowsPerPage)
+                }
+                // onRowClicked={(row) => localizationService.setUserObj(row)}
+              />
             </div>
-            {/* <div className="mt-2 mb-2 table-responsive">
-                <DataTable
-                  columns={columns}
-                  data={data}
-                  progressPending={loading}
-                  pagination
-                  paginationServer
-                  paginationTotalRows={totalRows}
-                  onChangePage={(page) => setPage(page)}
-                  onChangeRowsPerPage={(currentRowsPerPage) =>
-                    setPerPage(currentRowsPerPage)
-                  }
-                  // onRowClicked={(row) => localizationService.setUserObj(row)}
-                />
-              </div> */}
           </div>
         </div>
       </div>
@@ -182,7 +164,7 @@ const DataRow = (
     callee,
     type,
     duration,
-    Icstatus,
+    lastchangestatus,
     id,
     callername,
     transferredCaller,
@@ -206,7 +188,7 @@ const DataRow = (
     .substr(11, 8);
 
   // Parse Icstatus and adjust for GMT
-  const [_IcstatusDate, _IcstatusTime] = Icstatus.split(" ");
+  const [_IcstatusDate, _IcstatusTime] = lastchangestatus.split(" ");
   const [_IcstatusHour, _IcstatusMinute, _IcstatusSecond] = _IcstatusTime
     .split(":")
     .map(Number);

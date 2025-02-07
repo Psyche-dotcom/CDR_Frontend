@@ -55,6 +55,7 @@ const UsersExTable: React.FC = () => {
     {
       name: "No",
       selector: (row) => row.no,
+      sortable: true,
     },
     {
       name: "Name",
@@ -62,6 +63,7 @@ const UsersExTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnname }} />
       ),
+      sortable: true,
     },
     {
       name: "Email",
@@ -69,6 +71,7 @@ const UsersExTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnemail }} />
       ),
+      sortable: true,
     },
     {
       name: "Phone Number",
@@ -76,18 +79,22 @@ const UsersExTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnphonenumber }} />
       ),
+      sortable: true,
     },
     {
       name: "Total Inbound Calls",
       selector: (row) => row.totalinboundcalls,
+      sortable: true,
     },
     {
       name: "Total Outbound Calls",
       selector: (row) => row.totaloutboundcalls,
+      sortable: true,
     },
     {
       name: "Unanswered Missed Calls",
       selector: (row) => row.unansweredmissedcalls,
+      sortable: true,
     },
     {
       name: "Action",

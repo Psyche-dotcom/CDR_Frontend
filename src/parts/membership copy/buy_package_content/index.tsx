@@ -60,53 +60,206 @@ const BuyPackage = () => {
                 role="application"
                 id="steps-uid-0"
               >
-                <div className="steps clearfix">
-                  <ul role="tablist">
-                    <li
-                      role="tab"
-                      className="first current"
-                      aria-disabled="false"
-                      aria-selected="true"
+                <div style={{ margin: "0px auto", width: "100%" }}>
+                  <div
+                    style={{ maxWidth: "950px", margin: "0px auto" }}
+                    className="steps clearfix"
+                  >
+                    <ul
+                      role="tablist"
+                      style={{
+                        listStyle: "none",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        margin: "0px 12px",
+                        marginBottom: "4px",
+                      }}
                     >
-                      <a
-                        id="steps-uid-0-t-0"
-                        href="#steps-uid-0-h-0"
-                        aria-controls="steps-uid-0-p-0"
+                      <li
+                        role="tab"
+                        className="first current"
+                        aria-disabled="false"
+                        aria-selected="true"
                       >
-                        <span className="current-info audible">
-                          current step:{" "}
-                        </span>
-                        <span className="step">1</span> Packages
-                      </a>
-                    </li>
-                    <li
-                      role="tab"
-                      className="done"
-                      aria-disabled="false"
-                      aria-selected="false"
+                        <a
+                          id="steps-uid-0-t-0"
+                          href="#steps-uid-0-h-0"
+                          aria-controls="steps-uid-0-p-0"
+                          style={{
+                            display: "flex",
+                            color: "#999999",
+                            flexDirection: "column",
+                            fontSize: "16px",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <span
+                            style={{
+                              height: "50px",
+                              width: "50px",
+                              borderRadius: "50%",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+
+                              border:
+                                activeTabIndex === 1 || activeTabIndex > 1
+                                  ? "5px solid #666EE8"
+                                  : "5px solid #F4F5FA",
+                              color:
+                                activeTabIndex > 1
+                                  ? "#fff"
+                                  : activeTabIndex === 1
+                                  ? "#666EE8"
+                                  : "#999999",
+                              background:
+                                activeTabIndex > 1 ? "#666EE8" : "#fff",
+                            }}
+                            className="step"
+                          >
+                            1
+                          </span>
+                        </a>
+                      </li>
+                      <div
+                        style={{
+                          height: "5px",
+                          background:
+                            activeTabIndex > 1 ? "#666EE8" : "#F4F5FA",
+                          flex: "1",
+                        }}
+                      ></div>
+                      <li
+                        role="tab"
+                        className="done"
+                        aria-disabled="false"
+                        aria-selected="false"
+                      >
+                        <a
+                          id="steps-uid-0-t-1"
+                          href="#steps-uid-0-h-1"
+                          aria-controls="steps-uid-0-p-1"
+                          style={{
+                            alignItems: "center",
+                            justifyContent: "center",
+                            display: "flex",
+                            flexDirection: "column",
+                            fontSize: "16px",
+                            color: "#999999",
+                          }}
+                        >
+                          <span
+                            className="step"
+                            style={{
+                              height: "50px",
+                              width: "50px",
+                              borderRadius: "50%",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              border:
+                                activeTabIndex === 2 || activeTabIndex > 2
+                                  ? "5px solid #666EE8"
+                                  : "5px solid #F4F5FA",
+                              color:
+                                activeTabIndex > 2
+                                  ? "#fff"
+                                  : activeTabIndex === 2
+                                  ? "#666EE8"
+                                  : "#999999",
+
+                              background:
+                                activeTabIndex > 2 ? "#666EE8" : "#fff",
+                            }}
+                          >
+                            2
+                          </span>
+                        </a>
+                      </li>
+                      <div
+                        style={{
+                          height: "5px",
+                          background:
+                            activeTabIndex > 2 ? "#666EE8" : "#F4F5FA",
+                          flex: "1",
+                        }}
+                      ></div>
+                      <li
+                        role="tab"
+                        className="disabled last"
+                        aria-disabled="true"
+                      >
+                        <a
+                          id="steps-uid-0-t-2"
+                          href="#steps-uid-0-h-2"
+                          aria-controls="steps-uid-0-p-2"
+                          style={{
+                            display: "flex",
+                            fontSize: "16px",
+                            color: "#999999",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <span
+                            style={{
+                              height: "50px",
+                              width: "50px",
+                              borderRadius: "50%",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              border:
+                                activeTabIndex === 3
+                                  ? "5px solid #666EE8"
+                                  : "5px solid #F4F5FA",
+                              color:
+                                activeTabIndex === 3 ? "#666EE8" : "#999999",
+                            }}
+                          >
+                            3
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                    <ul
+                      role="tablist"
+                      style={{
+                        listStyle: "none",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
                     >
-                      <a
-                        id="steps-uid-0-t-1"
-                        href="#steps-uid-0-h-1"
-                        aria-controls="steps-uid-0-p-1"
+                      <p
+                        style={{
+                          fontSize: "14px",
+                          color: activeTabIndex === 1 ? "#333333" : "",
+                        }}
                       >
-                        <span className="step">2</span> Invoice Information
-                      </a>
-                    </li>
-                    <li
-                      role="tab"
-                      className="disabled last"
-                      aria-disabled="true"
-                    >
-                      <a
-                        id="steps-uid-0-t-2"
-                        href="#steps-uid-0-h-2"
-                        aria-controls="steps-uid-0-p-2"
+                        Packages
+                      </p>
+                      <p
+                        style={{
+                          fontSize: "14px",
+                          color: activeTabIndex === 2 ? "#333333" : "",
+                        }}
                       >
-                        <span className="step">3</span> Credit Card
-                      </a>
-                    </li>
-                  </ul>
+                        Invoice Information
+                      </p>
+                      <p
+                        style={{
+                          fontSize: "14px",
+                          color: activeTabIndex === 3 ? "#333333" : "",
+                        }}
+                      >
+                        Credit Card
+                      </p>
+                    </ul>
+                  </div>
                 </div>
                 <div className="content clearfix">
                   {activeTabIndex === 1 && (
@@ -232,10 +385,8 @@ const BuyPackage = () => {
                       </div>
                     </fieldset>
                   )}
-                  <h6 id="steps-uid-0-h-2" tabIndex={-1} className="title">
-                    Credit Card
-                  </h6>
-                  {
+
+                  {activeTabIndex === 3 && (
                     <fieldset
                       id="steps-uid-0-p-2"
                       role="tabpanel"
@@ -245,10 +396,19 @@ const BuyPackage = () => {
                     >
                       <div id="credit-card-container"></div>
                     </fieldset>
-                  }
+                  )}
                 </div>
                 <div className="actions clearfix">
-                  <ul role="menu" aria-label="Pagination">
+                  <ul
+                    role="menu"
+                    aria-label="Pagination"
+                    style={{
+                      display: "flex",
+                      justifyContent: "end",
+                      gap: "14px",
+                      listStyle: "none",
+                    }}
+                  >
                     <li
                       className="disabled"
                       aria-disabled="true"
@@ -257,13 +417,29 @@ const BuyPackage = () => {
                           setActiveTabIndex(activeTabIndex - 1);
                         }
                       }}
+                      style={{
+                        border: "1px solid #ddd",
+                        padding: "7px 12px",
+                        color: "#999999",
+                      }}
                     >
-                      <a href="#previous" role="menuitem">
+                      <a
+                        href="#previous"
+                        role="menuitem"
+                        style={{ color: "#999999" }}
+                      >
                         Previous
                       </a>
                     </li>
                     {activeTabIndex < 3 && (
                       <li
+                        style={{
+                          padding: "7px 12px",
+                          color: "#fff",
+                          background: "#666EE8",
+                          borderRadius: "2px",
+                          border: "1px solid transparent",
+                        }}
                         aria-hidden="false"
                         aria-disabled="false"
                         onClick={() => {
@@ -272,7 +448,11 @@ const BuyPackage = () => {
                           }
                         }}
                       >
-                        <a href="#next" role="menuitem">
+                        <a
+                          href="#next"
+                          role="menuitem"
+                          style={{ color: "#fff" }}
+                        >
                           Next
                         </a>
                       </li>

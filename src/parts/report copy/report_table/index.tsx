@@ -237,6 +237,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumndate }} />
       ),
+      sortable: true,
     },
     {
       name: "Start Time",
@@ -244,6 +245,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnstarttime }} />
       ),
+      sortable: true,
     },
     {
       name: "From",
@@ -251,6 +253,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnfrom }} />
       ),
+      sortable: true,
     },
     {
       name: "To",
@@ -258,6 +261,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnto }} />
       ),
+      sortable: true,
     },
     {
       name: "Type",
@@ -265,6 +269,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumninorout }} />
       ),
+      sortable: true,
     },
     {
       name: "Duration",
@@ -272,6 +277,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnduration }} />
       ),
+      sortable: true,
     },
     {
       name: "Talk Time",
@@ -279,6 +285,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumntalktime }} />
       ),
+      sortable: true,
     },
     {
       name: "Status",
@@ -286,6 +293,7 @@ const ReportTable: React.FC = () => {
       cell: (row) => (
         <div dangerouslySetInnerHTML={{ __html: row.tablecolumnstatus }} />
       ),
+      sortable: true,
     },
     {
       name: "Action",
