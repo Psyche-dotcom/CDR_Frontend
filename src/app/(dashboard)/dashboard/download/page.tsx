@@ -1,4 +1,4 @@
-import DownloadMain from "@/parts/downloadmain";
+import DownloadMain from "@/parts/downloadmain copy";
 import React from "react";
 
 const Download = () => {

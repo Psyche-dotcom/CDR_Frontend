@@ -3,9 +3,7 @@ import React, { useEffect } from "react";
 import UserExtensionHeader from "./extensionheader";
 import UserHeaderContent from "./header_content";
 import "../../css/extension.css";
-import { useGetUserExtension } from "@/services/api_service/company_service";
 import UserExtensionCard from "@/components/Card/user_extension_card";
-import UserContactProfileCard from "@/components/Card/user_contact_profile_card";
 import UserExtensionTable from "./user_extension_table";
 import Script from "next/script";
 import UserContactProfileCardCopy from "@/components/Card/user_contact_profile_card copy";
@@ -54,11 +52,6 @@ const UserExtensionMainPage2: React.FC<UserExtensionMainPageProps> = ({
   };
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css"
-      />
-
       <Script
         src="/app-assets/audio/wavesurfer.js"
         strategy="afterInteractive"
@@ -148,7 +141,7 @@ const UserExtensionMainPage2: React.FC<UserExtensionMainPageProps> = ({
             data={[]}
           />
         </div>
-        <UserExtensionTable localizations={localizations} />
+        <UserExtensionTable />
       </div>
     </>
   );

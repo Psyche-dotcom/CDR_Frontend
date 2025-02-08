@@ -1,5 +1,4 @@
-import MembershipMainSection from "@/parts/membership";
-import MembershipContent from "@/parts/membership/membership_content";
+import MembershipMainSection from "@/parts/membership copy";
 
 const MembershipPlan = () => {
   return (

@@ -36,15 +36,13 @@ let json = {
         tablecolumnemail:
           '<div class="person-email" style="display:flex;gap:2px;" id="email-1000"><img src="/app-assets/images/icons/ext-mail.svg">emre@k2mbilisim.com</div>',
         tablecolumnbutton:
-          '<a class="CallDetailsButton" href="/dashboard2/user/1000"><img src="/app-assets/images/icons/eye-table.svg" alt="View Details"></a>',
+          '<a class="CallDetailsButton" href="/dashboard/user/1000"><img src="/app-assets/images/icons/eye-table.svg" alt="View Details"></a>',
       },
     ],
   },
   reportDate: "2025/01/27 08:47:27",
 };
 const UsersExTable: React.FC = () => {
-  const tableRef = useRef<HTMLTableElement>(null);
-
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
   const [totalRows, setTotalRows] = useState<number>(0);
@@ -126,7 +124,6 @@ const UsersExTable: React.FC = () => {
         onChangeRowsPerPage={(currentRowsPerPage) =>
           setPerPage(currentRowsPerPage)
         }
-        // onRowClicked={(row) => localizationService.setUserObj(row)}
       />
     </div>
   );

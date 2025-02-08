@@ -319,10 +319,6 @@ const ReportTable: React.FC = () => {
 
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css"
-      />
       <div className="row">
         <div className="col-12">
           <div className="card">
@@ -340,7 +336,6 @@ const ReportTable: React.FC = () => {
                   onChangeRowsPerPage={(currentRowsPerPage) =>
                     setPerPage(currentRowsPerPage)
                   }
-                  // onRowClicked={(row) => localizationService.setUserObj(row)}
                 />
               </div>
             </div>

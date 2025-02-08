@@ -1,10 +1,10 @@
-import DashboardMain from "@/parts/dashboard";
+import DashboardMain2 from "@/parts/dashboard2";
 import React from "react";
 
 const DashBoardLandPage = () => {
   return (
     <>
-      <DashboardMain />
+      <DashboardMain2 />
     </>
   );
 };
