@@ -17,10 +17,7 @@ const SupportMainSection2 = () => {
         href="/app-assets/vendors/css/forms/selects/select2.min.css"
         rel="stylesheet"
       />
-      {/* <Script
-        src="/app-assets/page-scripts/support.js"
-        strategy="afterInteractive"
-      /> */}
+
       <DashboardCrumb
         title={"Support"}
         dashboardLabel={"Dashboard"}
