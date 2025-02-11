@@ -104,10 +104,6 @@ const TrunkDataTable = ({
 
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css"
-      />
       <div className="card-content">
         <div className="row">
           <div className="col-md-12">

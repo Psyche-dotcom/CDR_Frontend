@@ -1,4 +1,3 @@
-import UserExtensionMainPage from "@/parts/userextensionpage";
 import UserExtensionMainPage2 from "@/parts/userextensionpage copy";
 import React from "react";
 

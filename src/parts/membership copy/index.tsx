@@ -73,50 +73,6 @@ const MembershipMainSection: React.FC = () => {
       />
       <BuyPackage />
       <Promotion />
-
-      {/* <Script
-        src="/app-assets/amchart-trunk/core.js"
-        strategy="afterInteractive"
-      />
-      <Script src="/page-script-sample/member.js" strategy="afterInteractive" />
-      <Script
-        src="/app-assets/amchart-trunk/charts.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        src="/app-assets/amchart-trunk/animated.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        src="/app-assets/vendors/js/extensions/jquery.steps.min.js"
-        strategy="afterInteractive"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/app-assets/css/plugins/forms/wizard.css"
-      />
-      <Script
-        src="/app-assets/vendors/js/tables/datatable/datatables.min.js"
-        strategy="afterInteractive"
-      />
-      <link
-        href="/app-assets/vendors/css/tables/datatable/datatables.min.css"
-        rel="stylesheet"
-      />
-      <Script
-        src="/app-assets/vendors/js/forms/select/select2.full.min.js"
-        strategy="afterInteractive"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="/app-assets/vendors/css/forms/selects/select2.min.css"
-      />
-      <Script
-        src="/app-assets/page-scripts/membership.js"
-        strategy="afterInteractive"
-      /> */}
     </>
   );
 };

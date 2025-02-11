@@ -79,23 +79,6 @@ const PhoneBookMainSection2 = () => {
         isDeleteOpen={isDeleteOpen}
         onClose={() => setIsDeleteOpen(false)}
       />
-      {/* <Script src="/app-assets/vendors/js/tables/datatable/datatables.min.js" /> */}
-      <link
-        href="/app-assets/vendors/css/tables/datatable/datatables.min.css"
-        rel="stylesheet"
-      />
-      <link
-        href="/app-assets/responsive-datatable/datatables.min.css"
-        rel="stylesheet"
-      />
-      {/* <Script
-        src="/app-assets/responsive-datatable/datatables.min.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        src="/app-assets/page-scripts/company-phone-book.js"
-        strategy="afterInteractive"
-      /> */}
     </>
   );
 };

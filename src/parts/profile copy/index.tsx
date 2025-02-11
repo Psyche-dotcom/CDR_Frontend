@@ -25,12 +25,7 @@ const ProfileMain2 = () => {
         src="/app-assets/page-scripts/card-loading.js"
         strategy="afterInteractive"
       />
-      {/* <Script
-        src="/app-assets/page-scripts/company-detail.js"
-        strategy="afterInteractive"
-      /> */}
 
-      {/* <ProfileCrumb /> */}
       <Customizer
         cardSettings="Page Settings"
         cardFilterMessage="Select to apply filter"

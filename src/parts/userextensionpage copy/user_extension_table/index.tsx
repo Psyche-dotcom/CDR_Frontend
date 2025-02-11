@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import CallInfoDetails from "@/components/others/callinfo";
 import DataTable, { TableColumn } from "react-data-table-component";
-import CardHeader from "@/parts/report/ReportCardtableHeader";
+import CardHeader from "@/parts/report copy/ReportCardtableHeader";
 
 interface ReportData {
   tablecolumndate: string;

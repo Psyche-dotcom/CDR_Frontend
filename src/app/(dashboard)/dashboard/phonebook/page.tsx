@@ -1,4 +1,3 @@
-import PhoneBookMainSection from "@/parts/phone_book";
 import PhoneBookMainSection2 from "@/parts/phone_book copy";
 import React from "react";
 

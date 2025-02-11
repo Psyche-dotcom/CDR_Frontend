@@ -32,10 +32,7 @@ const DashboardMain2 = () => {
         src="/app-assets/page-scripts/card-loading.js"
         strategy="afterInteractive"
       />
-      {/* <Script
-        src="/app-assets/page-scripts/dashboard.js"
-        strategy="afterInteractive"
-      /> */}
+
       <Customizer
         cardSettings="Page Settings"
         cardFilterMessage="Select to apply filter"

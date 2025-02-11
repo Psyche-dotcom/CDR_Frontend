@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import DataTable, { TableColumn } from "react-data-table-component";
 
 interface LocalizationService {

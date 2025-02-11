@@ -150,67 +150,6 @@ const DashboardCard: React.FC = () => {
     ],
   });
 
-  // const getChartOptions = () => ({
-  //   grid: {
-  //     x: 40,
-  //     x2: 20,
-  //     y: 35,
-  //     y2: 25,
-  //   },
-  //   tooltip: {
-  //     trigger: "axis",
-  //   },
-  //   legend: {
-  //     data: ["Inbound", "Outbound", "Total Calls"],
-  //     textStyle: {
-  //       color: isDarkTheme ? "#fff" : "#000",
-  //       fontSize: 14,
-  //     },
-  //   },
-  //   calculable: true,
-  //   color: isDarkTheme
-  //     ? ["#35A3FF", "#AF60FF", "#626BB4"]
-  //     : ["#FF6BDD", "#6BF8C7", "#FFB051"],
-  //   xAxis: {
-  //     type: "category",
-  //     boundaryGap: false,
-  //     data: chartData.xAxis,
-  //   },
-  //   yAxis: {
-  //     type: "value",
-  //     axisLabel: {
-  //       textStyle: {
-  //         color: isDarkTheme ? "#fff" : "#000",
-  //         fontSize: 14,
-  //       },
-  //       rotate: 90,
-  //     },
-  //     splitNumber: 3,
-  //   },
-  //   series: [
-  //     {
-  //       name: "Inbound",
-  //       type: "line",
-  //       smooth: true,
-  //       itemStyle: { areaStyle: { type: "default" } },
-  //       data: chartData.inbound,
-  //     },
-  //     {
-  //       name: "Outbound",
-  //       type: "line",
-  //       smooth: true,
-  //       itemStyle: { areaStyle: { type: "default" } },
-  //       data: chartData.outbound,
-  //     },
-  //     {
-  //       name: "Total Calls",
-  //       type: "line",
-  //       smooth: true,
-  //       itemStyle: { areaStyle: { type: "default" } },
-  //       data: chartData.total,
-  //     },
-  //   ],
-  // });
   return (
     <div className="col-md-4">
       <div className="card dashboard-right-graph">

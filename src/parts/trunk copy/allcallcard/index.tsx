@@ -36,60 +36,6 @@ const AllCallCard = () => {
             allTrunksInfo={[]}
             themeColorDuration={themeColorDuration}
           />
-          {/*   <div className="card-content">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="table-responsive mb-2">
-                  <table
-                    className="table table-de mb-0 table-striped"
-                    id="TrunkDataTable"
-                  >
-                    <thead>
-                      <tr>
-                        <th>
-                           {localize("CDR_TrunkName")} 
-                          Trunk Name
-                        </th>
-                        <th>
-                          Caller
-                        {localize("CDR_Caller")}
-                        </th>
-                        <th>
-                          Caller Name
-                          {localize("CDR_CallerName")} 
-                        </th>
-                        <th>
-                          Type
-                          {localize("CDR_Type")} 
-                        </th>
-                        <th>
-                          Callee
-                          {localize("CDR_Callee")} 
-                        </th>
-                        <th>
-                          Callee Name
-                          {/* {localize("CDR_CalleeName")} 
-                        </th>
-                        <th>
-                          Duration
-                          {/* {localize("CDR_Duration")} 
-                        </th>
-                        <th>
-                          Status
-                          {/* {localize("CDR_Status")} 
-                        </th>
-                        <th>
-                          Last Change Status
-                          {/* {localize("CDR_LastChangeStatus")} 
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>*/}
         </div>
       </div>
     </div>

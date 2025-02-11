@@ -8,10 +8,6 @@ import UsersExTable from "./UsersExTable";
 const ExtensionMainSection2 = () => {
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css"
-      />
       <DashboardContentHeader
         title="Company Extensions"
         dashboardLabel="Dashboard"
